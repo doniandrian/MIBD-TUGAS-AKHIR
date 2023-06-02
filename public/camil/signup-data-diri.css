@@ -57,6 +57,8 @@ button {
 
 button:is(:hover, :focus){
     outline-style: solid;
-    outline-color: grey;
-    outline-offset: 3px;
+    outline-color: rgb(185, 182, 182);
+    outline-offset: 2px;
+    transition: outline-offset 0.3s ease;
+   
 }

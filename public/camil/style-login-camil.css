@@ -1,3 +1,13 @@
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(128, 128, 128, 0.3);
+    z-index: -1;
+}
 body {
     margin: 0;
     padding: 0;
@@ -8,7 +18,7 @@ body {
     align-items: center;
     flex-wrap: wrap;
     border-radius: 10px;
-    background-image: url('../../images/1658301389pemiluserentak2024.jpg');
+    background-image: url('../../public/images/background\ potensi1.jpeg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
