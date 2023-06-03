@@ -40,14 +40,14 @@ label {
     margin-bottom: 5px;
 }
 
-input[type="text"]{
+input[type="text"] {
     width: 100%;
     padding: 10px;
     border: none;
     border-bottom: 0.5px solid grey;
 }
 
-p{
+p {
     color: gray;
 }
 
@@ -57,14 +57,14 @@ button {
     color: #333;
     border: none;
     cursor: pointer;
-    
+
     border-radius: 20px;
 }
 
-button:is(:hover, :focus){
+button:is(:hover, :focus) {
     outline-style: solid;
     outline-color: rgb(185, 182, 182);
     outline-offset: 2px;
     transition: outline-offset 0.3s ease;
-   
+
 }

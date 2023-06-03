@@ -77,20 +77,20 @@ button {
     cursor: pointer;
 }
 
-button:is(:hover, :focus){
+button:is(:hover, :focus) {
     outline-style: solid;
     outline-color: rgb(185, 182, 182);
     outline-offset: 2px;
     transition: outline-offset 0.3s ease;
-   
+
 }
 
-#signup{
+#signup {
     display: flex;
     align-items: center;
     border-color: #fff;
 }
 
-#signin{
+#signin {
     border: none;
 }

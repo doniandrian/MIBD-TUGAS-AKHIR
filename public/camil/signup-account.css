@@ -40,14 +40,15 @@ label {
     margin-bottom: 5px;
 }
 
-input[type="text"],input[type="password"]{
+input[type="text"],
+input[type="password"] {
     width: 100%;
     padding: 10px;
     border: none;
     border-bottom: 0.5px solid grey;
 }
 
-p{
+p {
     color: gray;
 }
 
@@ -60,10 +61,10 @@ button {
     cursor: pointer;
 }
 
-button:is(:hover, :focus){
+button:is(:hover, :focus) {
     outline-style: solid;
     outline-color: rgb(185, 182, 182);
     outline-offset: 2px;
     transition: outline-offset 0.3s ease;
-   
+
 }
