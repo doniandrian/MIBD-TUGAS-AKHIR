@@ -1,0 +1,87 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f2f2f2;
+    background-image: url('../../public/images/background\ potensi1.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.rectangle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    width: 1200px;
+    padding: 60px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+    margin: 10px 0;
+}
+
+.line {
+    width: 850px;
+    height: 2px;
+    background-color: #EF4C59;
+    margin-bottom: 20px;
+}
+
+.textbox {
+    width: 850px;
+    height: 30px;
+    padding: 5px;
+    border: 1px solid lightgrey;
+    border-radius: 20px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+.row1 {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.row2 {
+    display: flex;
+    justify-content:space-between;
+}
+
+.row1 > div {
+    flex: 1;
+    text-align: center;
+    margin: 0 75px; /* Adjust the margin value as needed */
+}
+
+.row2 > div {
+    flex: 1;
+    text-align: center;
+    margin: 0 75px; /* Adjust the margin value as needed */
+}
+
+.column1,
+.column2,
+.column3,
+.column4,
+.column5,
+.column6 {
+    flex: 1;
+    text-align: center;
+}
+
+button{
+    background-color: aqua;
+}
