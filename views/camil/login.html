@@ -3,7 +3,7 @@
 
 <head>
     <title>Halaman Login</title>
-    <link rel="stylesheet" href="../../public/camil/style-login-camil.css">
+    <link rel="stylesheet" href="/public/camil/style-login-camil.css">
 </head>
 
 <body>
@@ -11,16 +11,20 @@
         <div class="left">
             <form>
                 <h2>Sign in</h2>
-                <label for="name">USERNAME</label>
-                <input name = "name" type="text" placeholder="Username" required>
+                <label for="nik">NIK</label>
+                <input name="nik" type="text" placeholder="NIK" required>
                 <label for="password">PASSWORD</label>
-                <input name = "password" type="password" placeholder="Password" required>
-                <button type="submit">Login</button>
+                <input name="password" type="password" placeholder="Password" required>
+                <button id="signin" type="submit">Sign in</button>
             </form>
         </div>
         <div class="right">
-            <h1>Selamat Datang</h1>
-            <p>Silakan login untuk melanjutkan.</p>
+            <h1>
+                Selamat Datang di
+                Website PEMILU
+            </h1>
+            <p>Belum punya akun?</p>
+            <button id="signup" type="submit">Sign Up</button>
         </div>
     </div>
 </body>

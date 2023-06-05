@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Upload KTP</title>
+    <link rel="stylesheet" type="text/css" href="../../public/camil/signup-ktp.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="content">
+            <h2>Upload Foto Kartu Identitas</h2>
+            <p>(KTP)</p>
+            <div id="cont">
+                <p id="up">Drop file to upload</p>
+                <div class="isi">
+                    <img src="https://kodfun.github.io/Reels/ImagePreview/choose.png" height="250" id="gambar"
+                        alt="Upload">
+                    <div class="submitvalue">
+                        <input type="file" id="Submit" value="Upload">
+                    </div>
+                    <p>
+                        Pastikan kartu identitas Anda terlihat dengan jelas!
+                    </p>
+                </div>
+                <br>
+                <form>
+                    <button class="button" type="next">Next -></button>
+                </form>
+            </div>
+        </div>
+</body>
+
+</html>
+
+<script>
+    let img = document.getElementById("gambar");
+    let btn = document.getElementById("Submit");
+
+    btn.onchange = (e) => {
+        if (btn.files[0]) {
+            img.src = URL.createObjectURL(btn.files[0]);
+        }
+    };
+</script>

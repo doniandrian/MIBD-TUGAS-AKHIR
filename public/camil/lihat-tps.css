@@ -22,14 +22,37 @@ body {
     align-items: center;
     justify-content: center;
     background-color: #fff;
-    width: 450px;
-    padding: 40px;
+    width: 300px;
+    padding: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+.no-data {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.verification-notice {
+    display: flex;
+    justify-content: center;
+}
+
+.red-rectangle {
+    background-color: #EF4C59;
+    padding: 10px;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.red-rectangle p {
+    margin: 0;
+    font-weight: bold;
+}
+
 h2 {
-    margin: 10px 0;
+    margin-top: 0;
 }
 
 .line {
@@ -39,34 +62,16 @@ h2 {
     margin-bottom: 20px;
 }
 
-.spacer-line {
-    width: 100%;
-    height: 1px;
-    background-color: lightgrey;
-    margin: 20px 0;
-}
-
-.profile-details {
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-gap: 20px;
-    /* Increase the value to add more distance between columns */
+.details {
+    list-style-type: none;
+    padding: 0;
     text-align: left;
 }
 
-.profile-details p {
-    margin: 10px 0;
-    text-align: left;
+.details li {
+    margin-bottom: 10px;
 }
 
-.verification-label {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-}
-
-.verification-label p {
-    margin: 0;
-    font-weight: bold;
-    color: #fff;
+.details li strong {
+    margin-right: 5px;
 }

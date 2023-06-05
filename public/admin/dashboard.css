@@ -1,0 +1,127 @@
+.utama{
+    display: flex;
+}
+
+main{
+    width: 90%;
+   padding: 10px;
+    margin-top: 50px;
+}
+
+.lihatCamil p{
+    margin-left: 20px;
+}
+
+.lihatCamil{
+    border: 1px solid gray;
+    padding-bottom: 10px;
+    
+}
+
+.data{
+    display: flex;
+    border: 1px solid gray;
+    justify-content: space-between;
+}
+
+#totCamil{
+    margin-left: 85px;
+    color: #495057;
+}
+
+#gambarCamera{
+    margin-left: 15px;
+    margin-top: -20px;
+}
+
+#empat{
+    margin-left: 90px;
+    margin-top: -50px;
+    color:#495057
+}
+
+
+
+
+#gambarTas{
+    margin-left: -55px;
+    margin-top: -20px;
+}
+
+#tiga{
+    margin-left: 20px;
+    margin-top: -50px;
+    color:#495057
+}
+
+#sudahVerif{
+    margin-left: -250px;
+    color: #495057;
+}
+
+#gambarBohlam{
+    margin-top: -20px;
+    margin-left: -325px; 
+}
+
+#satu{
+    margin-left: -250px;
+    margin-top: -50px;
+    color:#495057
+}
+
+#lihatLebihDetail{
+    color: white;
+    background-image: linear-gradient(to bottom,#295988,#033C73);
+    height: 30px;
+    margin-top: 15px;
+    margin-left: 600px;
+    
+}
+
+#data2{
+    margin-left: -250px;
+}
+
+.lihatTPS{
+    margin-top: 100px;
+    border: 1px solid gray;
+    padding-bottom: 10px;
+    
+}
+
+.lihatTPS p{
+    margin-left: 20px;
+}
+
+#jmlTPS{
+    margin-left: 85px;
+    color: #495057;
+}
+
+#gambarCamera2{
+    margin-left: 15px;
+    margin-top: -20px;
+}
+
+#gambarTas2{
+    margin-left: -55px;
+    margin-top: -20px;
+}
+
+#gambarBohlam2{
+    margin-top: -20px;
+    margin-left: -325px; 
+}
+
+#tpsSedia{
+    color: #495057;
+    margin-left: -250px;
+}
+#tpsPenuh{
+    color: #495057;
+}
+
+#belumVerif{
+    color: #495057;
+}

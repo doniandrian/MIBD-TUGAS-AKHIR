@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin</title>
+    <link rel="stylesheet" type="text/css" href="/admin/dashboard.css">
+</head>
+
+<body>
+    
+    <%- include('./header.ejs') %>
+    <!-- <header>
+        <img id="logoBawaslu" src="../../public/images/logo bawaslu transparan.png">
+        <img id="gambarProfile" src="../../public/images/profile.png">
+    </header> -->
+    <div class="utama">
+        <%- include('./navigator.ejs') %>
+        <main>
+            <div class="lihatCamil">
+                <p>Data Calon Pemilih</p>
+    
+                <div class="data">
+                    <div id="data1">
+                        <p id="totCamil">Total Calon Pemilih</p>
+                        <img id="gambarCamera" src="/images/div.icon-wrapper.png">
+                        <h1 id="empat">-</h1>
+                    </div>
+                    
+                    
+    
+                    <div id="data2">
+                        <p id="belumVerif">Belum Terverifikasi</p>
+                        <img id="gambarTas" src="/images/icon admin 1.png">
+                        <h1 id="tiga">-</h1>
+                    </div>
+    
+                    <div id="data3">
+                        <p id="sudahVerif">Sudah Terverifikasi</p>
+                        <img id="gambarBohlam" src="/images/icon admin 2.png">
+                        <h1 id="satu">-</h1>
+                    </div>
+                    
+                </div>
+    
+                <button id="lihatLebihDetail">Lihat Lebih Detail</button>
+            </div>
+    
+            <div class="lihatTPS">
+                <p>Data TPS</p>
+    
+                <div class="data">
+                    <div id="data1">
+                        <p id="jmlTPS">Jumlah TPS</p>
+                        <img id="gambarCamera2" src="/images/div.icon-wrapper.png">
+                        <h1 id="empat">-</h1>
+                    </div>
+                    
+                    
+    
+                    <div id="data2">
+                        <p id="tpsPenuh">TPS Penuh</p>
+                        <img id="gambarTas2" src="/images/icon admin 1.png">
+                        <h1 id="tiga">-</h1>
+                    </div>
+    
+                    <div id="data3">
+                        <p id="tpsSedia">TPS yang Tersedia</p>
+                        <img id="gambarBohlam2" src="/images/icon admin 2.png">
+                        <h1 id="satu">-</h1>
+                    </div>
+                    
+                </div>
+    
+                <button id="lihatLebihDetail">Lihat Lebih Detail</button>
+            </div>
+        </main>
+
+    </div>
+    <menu>
+
+    </menu>
+
+    
+</body>
+
+</html>
+   
+
+    
