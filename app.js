@@ -4,6 +4,7 @@ import mysql from 'mysql';
 import urlencoded  from 'body-parser';
 import session from 'express-session';
 import path from 'path';
+import crypto from 'crypto';
 
 
 
@@ -15,7 +16,11 @@ import {check, validationResult} from 'express-validator';
 const app = express();
 const staticPath = path.resolve('public');
 app.use(express.static(staticPath));
-  
+app.use(session({
+    secret: 'kelompok7',
+    resave: false,
+    saveUninitialized: true
+  })); 
 
   
 app.set('view engine', 'ejs');
@@ -67,6 +72,78 @@ app.get('/camil/profile', (req, res) => {
 
 
 //routing lurah
+
+
+//login
+app.get('/login', (req, res) => {
+    res.render('login', { title: 'Login', currentPage: 'login' });
+}
+);
+
+//signup
+app.get('/camil/datadiri', (req, res) => {
+    res.render('camil/datadiri', { title: 'Signup', currentPage: 'signup' });
+}
+);
+let data = [];
+app.post('/camil/datadiri', (req, res) => {
+
+    
+    data.push({
+        nik: req.body.nik,
+        lahir: req.body.lahir,
+        kota: req.body.kota,
+        kecamatan: req.body.kecamatan,
+        kelurahan: req.body.kelurahan,
+        RWRT: req.body.RWRT,
+        HP: req.body.HP
+
+    })
+    console.log(data);
+    res.redirect('/camil/ktp');
+   
+
+
+
+
+}
+);
+
+
+
+app.get('/camil/ktp', (req, res) => {
+    res.render('camil/ktp', { title: 'ktp', currentPage: 'signup' });
+}
+);
+app.post('/camil/ktp', (req, res) => {
+    res.redirect('/camil/signup');
+}
+);
+    
+
+app.get('/camil/signup', (req, res) => {
+    res.render('camil/signup', { title: 'signup', currentPage: 'signup' });
+}
+);
+app.post('/camil/signup', (req, res) => {
+    const password = req.body.password;
+    const hashed_pass = crypto.createHash('sha256').update(password).digest('base64');
+    data.push({
+        nama: req.body.nama,
+        email: req.body.email,
+        password: hashed_pass,
+
+
+    })
+    console.log(data);
+    res.redirect('/login');
+   
+    
+}
+);
+
+
+
 
 
 

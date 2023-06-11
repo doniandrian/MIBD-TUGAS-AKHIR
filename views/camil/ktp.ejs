@@ -3,7 +3,7 @@
 
 <head>
     <title>Upload KTP</title>
-    <link rel="stylesheet" type="text/css" href="../../public/camil/signup-ktp.css">
+    <link rel="stylesheet" type="text/css" href="/camil/signup-ktp.css">
 </head>
 
 <body>
@@ -13,18 +13,19 @@
             <p>(KTP)</p>
             <div id="cont">
                 <p id="up">Drop file to upload</p>
-                <div class="isi">
-                    <img src="https://kodfun.github.io/Reels/ImagePreview/choose.png" height="250" id="gambar"
-                        alt="Upload">
-                    <div class="submitvalue">
-                        <input type="file" id="Submit" value="Upload">
+                <form method="post" action="/camil/ktp">
+                    
+                    <div class="isi">
+                        <img src="https://kodfun.github.io/Reels/ImagePreview/choose.png" height="250" id="gambar"
+                            alt="Upload">
+                        <div class="submitvalue">
+                            <input type="file" id="Submit" value="Upload">
+                        </div>
+                        <p>
+                            Pastikan kartu identitas Anda terlihat dengan jelas!
+                        </p>
                     </div>
-                    <p>
-                        Pastikan kartu identitas Anda terlihat dengan jelas!
-                    </p>
-                </div>
-                <br>
-                <form>
+                    <br>
                     <button class="button" type="next">Next -></button>
                 </form>
             </div>

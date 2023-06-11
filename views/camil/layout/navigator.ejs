@@ -1,27 +1,21 @@
-
-    <link rel="stylesheet" type="text/css" href="/camil/layout/navigator.css">
-
-
-
-    <div class="container">
-        <div class="rectangle">
-            <a href="#" class="nav-button">
-                <img src="/images/icon ke home.png" alt="Home">
-                <span>Home</span>
-            </a>
-            <a href="#" class="nav-button">
-                <img src="/images/icon home 1.png" alt="Home">
-                <span>Profile</span>
-            </a>
-            <a href="#" class="nav-button">
-                <img src="/images/icon home 3.png" alt="Home">
-                <span>Lihat TPS</span>
-            </a>
-            <a href="#" class="nav-button">
-                <img src="/images/log out.png" alt="Home">
-                <span>Log out</span>
-            </a>
-        </div>
-    </div>
+<link rel="stylesheet" href="/camil/layout/navigator.css">
+    <nav class="vertical-navbar">
+        <a href="home" class="nav-button <%= currentPage === 'home' ? 'current' : '' %>">
+            <img src="/images/icon ke home.png" alt="Home">
+            <span>Home</span>
+        </a>
+        <a href="profile" class="nav-button <%= currentPage === 'profile' ? 'current' : '' %>">
+            <img src="/images/icon home 1.png" alt="Home">
+            <span>Profile</span>
+        </a>
+        <a href="lihat-tps" class="nav-button <%= currentPage === 'lihat-tps' ? 'current' : '' %>">
+            <img src="/images/icon home 3.png" alt="Home">
+            <span>Lihat TPS</span>
+        </a>
+        <a href="#" class="nav-button">
+            <img src="/images/log out.png" alt="Home">
+            <span>Log out</span>
+        </a>
+    </nav>
 
 

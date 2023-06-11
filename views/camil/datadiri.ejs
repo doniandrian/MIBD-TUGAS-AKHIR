@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Halaman Data Diri</title>
+    <link rel="stylesheet" type="text/css" href="/camil/signup-data-diri.css">
+    <script>
+        // Fungsi untuk mengisi opsi dropdown dengan data yang diberikan
+        function populateDropdown(selectElement, data) {
+            for (let i = 0; i < data.length; i++) {
+                let option = document.createElement("option");
+                option.text = data[i];
+                option.value = data[i];
+                selectElement.appendChild(option);
+            }
+        }
+        window.onload = function() {
+        // Mengisi opsi dropdown untuk Kota
+        let kotaDropdown = document.getElementById("kota");
+        let kotaData = ["Kota A", "Kota B", "Kota C"]; // Ganti dengan data sesuai kebutuhan
+        populateDropdown(kotaDropdown, kotaData);
+
+        // Mengisi opsi dropdown untuk Kecamatan
+        let kecamatanDropdown = document.getElementById("kecamatan");
+        let kecamatanData = ["Kecamatan A", "Kecamatan B", "Kecamatan C"]; // Ganti dengan data sesuai kebutuhan
+        populateDropdown(kecamatanDropdown, kecamatanData);
+
+        // Mengisi opsi dropdown untuk Kelurahan
+        let kelurahanDropdown = document.getElementById("kelurahan");
+        let kelurahanData = ["Kelurahan A", "Kelurahan B", "Kelurahan C"]; // Ganti dengan data sesuai kebutuhan
+        populateDropdown(kelurahanDropdown, kelurahanData);
+
+        // Mengisi opsi dropdown untuk RW/RT
+        let rwrtDropdown = document.getElementById("RWRT");
+        let rwrtData = ["RW/RT A", "RW/RT B", "RW/RT C"]; // Ganti dengan data sesuai kebutuhan
+        populateDropdown(rwrtDropdown, rwrtData);
+    }
+</script>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <h2>Masukkan Data Diri Anda</h2>
+            <form method="post" action="/camil/datadiri">
+                <div class="form-group">
+                    <label for="nik">NIK:</label>
+                    <input type="text" id="nik" name="nik" placeholder="NIK..." required>
+                </div>
+                <div class="form-group">
+                    <label for="tempat">Tempat Lahir:</label>
+                    <input type="text" id="tempat" name="tempat" placeholder="Tempat Lahir..." required>
+                </div>
+                <div class="form-group">
+                    <label for="lahir">Tanggal Lahir:</label>
+                    <input type="date" id="lahir" name="lahir" required>
+                </div>
+                <div class="form-group">
+                    <label for="kota">Kota:</label>
+                    <select id="kota" name="kota" required>
+                        <option value="" selected disabled>Pilih Kota</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="kecamatan">Kecamatan:</label>
+                    <select id="kecamatan" name="kecamatan" required>
+                        <option value="" selected disabled>Pilih Kecamatan</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="kelurahan">Kelurahan:</label>
+                    <select id="kelurahan" name="kelurahan" required>
+                        <option value="" selected disabled>Pilih Kelurahan</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="RWRT">RW/RT:</label>
+                    <select id="RWRT" name="RWRT" required>
+                        <option value="" selected disabled>Pilih RW/RT</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="HP">No HP:</label>
+                    <input type="text" id="HP" name="HP" placeholder="No HP..." required>
+                </div>
+                <p>Siapkan KTP anda</p>
+                <button class="button" type="next">Next</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

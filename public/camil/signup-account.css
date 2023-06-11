@@ -1,13 +1,24 @@
 body {
+    animation: transitionIn 0.75s;
     margin: 100px;
     padding: 0;
     font-family: Arial, sans-serif;
     background-color: #f2f2f2;
     /* background-color: #999999; */
-    background-image: url('../../public/images/background\ potensi1.jpeg');
+    background-image: url('/images/background\ potensi1.jpeg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+}
+@keyframes transitionIn {
+    from{
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .container {
@@ -67,4 +78,19 @@ button:is(:hover, :focus) {
     outline-offset: 2px;
     transition: outline-offset 0.3s ease;
 
+}
+.valid-feedback,
+.invalid-feedback {
+    margin-left: 5px;
+}
+.valid-feedback {
+    display: none;
+    color: green;
+    font-size: small;
+}
+
+.invalid-feedback {
+    display: none;
+    color: red;
+    font-size: small;
 }

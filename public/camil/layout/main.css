@@ -1,7 +1,18 @@
 body {
+   
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
+}
+@keyframes transitionIn {
+    from{
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 header {
@@ -50,7 +61,8 @@ header {
 }
 
 .background {
-    height: 100vh;
+    animation: transitionIn 0.75s;
+    height: 85vh;
     width: 100%;
     position: fixed;
     top: 0;
@@ -67,6 +79,7 @@ header {
     bottom: 0;
     left: 0;
     width: 100%;
+   margin-bottom: 10px;
     z-index: 3;
     background-color: #f2f2f2;
 }
@@ -75,7 +88,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80px;
+    height: 90px;
     padding: 0 10px;
 }
 

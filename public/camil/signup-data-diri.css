@@ -1,9 +1,22 @@
 body {
+    animation: transitionIn 0.75s;
+
     margin: 100px;
     padding: 0;
     font-family: Arial, sans-serif;
     background-color: #f2f2f2;
+    background-image: url('/images/background\ potensi1.jpeg');
     /* background-color: #999999; */
+}
+@keyframes transitionIn {
+    from{
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .container {
@@ -62,3 +75,25 @@ button:is(:hover, :focus){
     transition: outline-offset 0.3s ease;
    
 }
+select,input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: 0.5px solid grey;
+    appearance: none; /* Menghilangkan tampilan default browser */
+    background-color: #ffffff;
+    background-image: linear-gradient(to bottom, #ffffff 0%, #ffffff 100%);
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    cursor: pointer;
+  }
+  
+  select:focus {
+    outline: none;
+    border-color: #EF4C59; /* Warna saat elemen dipilih/fokus */
+  }
+  
+  option {
+    background-color: #ffffff;
+    color: #333333;
+  }

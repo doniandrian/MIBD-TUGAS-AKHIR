@@ -10,19 +10,30 @@ body::before {
 }
 
 body {
+    animation: transitionIn 0.75s;
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family:'Segoe UI', Tahoma, Verdana, sans-serif, sans-serif;
     background-color: #f2f2f2;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     border-radius: 10px;
-    background-image: url('../../public/images/background\ potensi1.jpeg');
+    background-image: url('/images/background\ potensi1.jpeg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+}
+@keyframes transitionIn {
+    from{
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .container {
@@ -61,11 +72,11 @@ form {
 
 input[type="text"],
 input[type="password"] {
-    padding: 20px;
+    padding: 15px;
     margin-bottom: 10px;
     border: none;
     border-radius: 20px;
-    background-color: #DCDCDC;
+    background-color: #f4eeee;
 
 }
 
@@ -79,7 +90,7 @@ button {
 
 button:is(:hover, :focus) {
     outline-style: solid;
-    outline-color: rgb(185, 182, 182);
+    outline-color: rgb(244, 137, 137);
     outline-offset: 2px;
     transition: outline-offset 0.3s ease;
 
