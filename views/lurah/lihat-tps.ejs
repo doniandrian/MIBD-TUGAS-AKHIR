@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Lihat TPS</title>
+    <link rel="stylesheet" type="text/css" href="/lurah/detailtps.css">
+</head>
+
+<body>
+
+    <%- include('./layout/navigator.ejs') %>
+
+    <div class="container">
+        <div class="rectangle">
+            <h2>Daftar Pengalokasian TPS</h2>
+            <div class="profile-details">
+                <table>
+                    <tr>
+                        <th>No</th>
+                        <th>Nomor</th>
+                        <th>Lokasi</th>
+                        <th>Kapasitas Terisi</th>
+                        <th>Kapasitas Maksimum</th>
+                        <th>Kapasitas Sisa</th>
+                        <th>Keterangan</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <td>#1</td>
+                        <td>21</td>
+                        <td>Babakan Ciparay</td>
+                        <td>1</td>
+                        <td>10</td>
+                        <td>9</td>
+                        <td>Aula SMA BPK Holis</td>
+                        <td><button class="button">Detail</button></td>
+                    </tr>
+                    <tr>
+                        <td>#2</td>
+                        <td>22</td>
+                        <td>Cibadak</td>
+                        <td>0</td>
+                        <td>11</td>
+                        <td>11</td>
+                        <td>Gedung Muslimin 1</td>
+                        <td><button class="button">Detail</button></td>
+                    </tr>
+                    <tr>
+                        <td>#3</td>
+                        <td>23</td>
+                        <td>Lengkong</td>
+                        <td>10</td>
+                        <td>12</td>
+                        <td>2</td>
+                        <td>Taman Karta</td>
+                        <td><button class="button">Detail</button></td>
+                    </tr>
+                    <tr>
+                        <td>#4</td>
+                        <td>24</td>
+                        <td>Bojong Soang</td>
+                        <td>1</td>
+                        <td>10</td>
+                        <td>9</td>
+                        <td>SMAN 1 Bojong Soang</td>
+                        <td><button class="button">Detail</button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="rectangle1">
+        <h2 class="head">Detail TPS</h2>
+        <div class="line"></div>
+        <h4 class="ket">Lokasi: Babakan Ciparay</h4>
+        <h4 class="ket">Keterangan: Aula SMA BPK Holis</h4>
+        <div class="spacer-line"></div>
+        <div class="profile-details">
+            <table class="overlay">
+                <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>NIK</th>
+                    <th>Alamat</th>
+                </tr>
+                <tr>
+                    <td>#1</td>
+                    <td>Johannes Putra</td>
+                    <td>32729374518273</td>
+                    <td>Taman Holis</td>
+                </tr>
+            </table>
+        </div>
+        <button class="button">Tutup</button>
+    </div>
+</body>
+
+</html>

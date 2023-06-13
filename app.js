@@ -10,6 +10,7 @@ import crypto from 'crypto';
 
 
 
+
 //import {cookieParser} from 'cookie-parser';
 import {check, validationResult} from 'express-validator';
 
@@ -26,59 +27,115 @@ app.use(session({
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 
-//login
-
-
-//routing admin
-app.get('/admin/dashboard', (req, res) => {
-    res.render('admin/dashboard', { title: 'Dashboard', currentPage: 'dashboard' });
-}
-);
-
-app.get('/admin/cetakkartu', (req, res) => {
-    res.render('admin/cetakkartu', {title: 'CetakKartu',currentPage: 'cetakkartu' });
-}
-);
-
-
-app.get('/admin/profile', (req, res) => {
-    res.render('admin/profile', {title: 'Profile', currentPage: 'profile' });
-}
-);
-
-
-app.get('/admin/daftarpengalokasian', (req, res) => {
-    res.render('admin/daftarpengalokasian', { title: 'DaftarPengalokasian',currentPage: 'daftarpengalokasian' });
-}
-);
-app.get('/admin/verifikasi', (req, res) => {
-    res.render('admin/verifikasi', { title: 'Verifikasi',currentPage: 'verifikasi' });
-}
-);
-
-//routing camil
-app.get('/camil/home', (req, res) => {
-    res.render('camil/home', {currentPage: 'home' });
-}
-);
-app.get('/camil/lihat-tps', (req, res) => {
-    res.render('camil/lihat-tps', {currentPage: 'lihat-tps' });
-}
-);
-app.get('/camil/profile', (req, res) => {
-    res.render('camil/profile', {currentPage: 'profile' });
-}
-);
-
-
-//routing lurah
-
-
-//login
+const db = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'tubes'
+})
+db.connect((err) => {
+    if (err) {
+      throw err;
+    }
+    console.log('Connected to the database');
+  });
+//middleware
+const auth = (req, res, next) => {
+    if (req.session.nik) {
+      next();
+    } else {
+      res.redirect('/login');
+    }
+  };
+  //login
 app.get('/login', (req, res) => {
     res.render('login', { title: 'Login', currentPage: 'login' });
 }
 );
+
+    
+app.post('/login', (req, res) => {
+  const nik = req.body.nik;
+  const password = req.body.password;
+  const hashed_pass = crypto.createHash('sha256').update(password).digest('base64');
+  
+  if (nik && password) {
+    db.query('SELECT idPengguna FROM pengguna WHERE idPengguna = ? AND passPengguna = ?', [nik, password], (err, penggunaResult) => {
+      if (err) {
+        throw err;
+      }
+      
+      if (penggunaResult.length > 0) {
+        const idPengguna = penggunaResult[0].idPengguna;
+        
+        db.query('SELECT * FROM admin WHERE idAdmin = ?', [idPengguna], (err, adminResult) => {
+          if (err) {
+            throw err;
+          }
+          
+          if (adminResult.length > 0) {
+            // Pengguna adalah seorang admin
+            req.session.nik = adminResult[0].namaAdmin;
+            req.session.role = 'admin';
+           
+            res.redirect('/admin/dashboard');
+          } else {
+            db.query('SELECT * FROM lurah WHERE idLurah = ?', [idPengguna], (err, lurahResult) => {
+              if (err) {
+                throw err;
+              }
+              
+              if (lurahResult.length > 0) {
+                // Pengguna adalah seorang lurah
+                req.session.nik = lurahResult[0].namaLurah;
+                req.session.role = 'lurah';
+                res.redirect('/lurah/home');
+              } else {
+                db.query('SELECT * FROM camil WHERE idCamil = ?', [idPengguna], (err, camilResult) => {
+                  if (err) {
+                    throw err;
+                  }
+                  
+                  if (camilResult.length > 0) {
+                    // Pengguna adalah seorang camil
+                    req.session.nik = camilResult[0].namaCamil;
+                    req.session.role = 'camil';
+                    res.redirect('/camil/home');
+                  } else {
+                    // Pengguna tidak memiliki peran yang valid
+                    res.render('login', { nik, password });
+                  }
+                });
+              }
+            });
+          }
+        });
+      } else {
+        // Pengguna tidak ditemukan dalam tabel pengguna
+        res.render('login', { nik, password });
+      }
+    });
+  } else {
+    // Data login tidak lengkap
+    res.render('login', { nik: null, password: null, login: null });
+  }
+});
+
+//logout
+app.post('/logout', (req, res) => {
+    req.session.destroy();
+    res.redirect('/login');
+  });
+// Menambahkan route untuk logout
+app.get('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error('Error destroying session:', err);
+    }
+    res.redirect('/login');
+  });
+});
+
 
 //signup
 app.get('/camil/datadiri', (req, res) => {
@@ -108,6 +165,130 @@ app.post('/camil/datadiri', (req, res) => {
 
 }
 );
+//routing camil
+app.get('/camil/home', auth, (req, res,next) => {
+  if (req.session.role === 'camil') {
+    res.render('camil/home', {title: 'home', currentPage: 'home',login: req.session.nik });
+  } else {
+    next();
+  }
+}
+);
+app.get('/camil/lihat-tps', auth, (req, res,next) => {
+  if (req.session.role === 'camil') {
+    res.render('camil/lihat-tps', {title: 'lihat-tps',currentPage: 'lihat-tps',login: req.session.nik });
+  } else {
+    next();
+  }
+}
+);
+app.get('/camil/profile',auth, (req, res,next) => {
+  if (req.session.role === 'camil') {
+    res.render('camil/profile', {title: 'profile',currentPage: 'profile',login: req.session.nik });
+  } else {
+    next();
+  }
+}
+);
+
+
+
+//routing admin
+app.get('/admin/dashboard',auth, (req, res,next) => {
+    if (req.session.role === 'admin') {
+    res.render('admin/dashboard', { title: 'Dashboard', currentPage: 'dashboard' });
+  } else {
+    next();
+  }
+}
+);
+
+app.get('/admin/cetakkartu',auth, (req, res,next) => {
+  if (req.session.role === 'admin') {
+    res.render('admin/cetakkartu', {title: 'CetakKartu',currentPage: 'cetakkartu' });
+  } else {
+    next();
+  }
+}
+);
+
+
+app.get('/admin/profile',auth, (req, res,next) => {
+  if (req.session.role === 'admin') {
+    res.render('admin/profile', {title: 'Profile', currentPage: 'profile' });
+  } else {
+    next();
+  }
+}
+);
+
+
+app.get('/admin/daftarpengalokasian', auth,(req, res,next) => {
+  if (req.session.role === 'admin') {
+    res.render('admin/daftarpengalokasian', { title: 'Daftar Pengalokasian',currentPage: 'daftarpengalokasian' });
+
+  } else {
+    next();
+  }
+}
+);
+app.get('/admin/verifikasi',auth, (req, res,next) => {
+  if (req.session.role === 'admin') {
+    res.render('admin/verifikasi', { title: 'Verifikasi',currentPage: 'verifikasi' });
+  } else {
+    next();
+  }
+}
+);
+
+
+
+
+//routing lurah
+app.get('/lurah/home',auth, (req, res,next) => {
+  if (req.session.role === 'lurah') {
+    res.render('lurah/home', {title: 'home', currentPage: 'home' });
+  } else {
+    next();
+  }
+    
+}
+);
+app.get('/lurah/profile',auth, (req, res,next) => {
+  if (req.session.role === 'lurah') {
+    res.render('lurah/profile', {title: 'profile', currentPage: 'profile' });
+  } else {
+    next();
+  }
+}
+);
+app.get('/lurah/lihat-camil',auth, (req, res,next) => {
+  if (req.session.role === 'lurah') {
+    res.render('lurah/lihat-camil', {title: 'lihat camil', currentPage: 'lihat-camil' });
+  } else {
+    next();
+  }
+}
+);
+app.get('/lurah/lihat-tps',auth, (req, res,next) => {
+  if (req.session.role === 'lurah') {
+    res.render('lurah/lihat-tps', {title: 'Lihat TPS', currentPage: 'lihat-tps' });
+  } else {
+    next();
+  }
+}
+);
+app.get('/lurah/pilih-saksi',auth, (req, res,next) => {
+  if (req.session.role === 'lurah') {
+    res.render('lurah/pilih-saksi', {title: 'Pilih Saksi', currentPage: 'pilih-saksi' });
+  } else {
+    next();
+  }
+}
+);
+
+
+
 
 
 
