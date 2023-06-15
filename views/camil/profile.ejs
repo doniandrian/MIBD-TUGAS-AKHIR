@@ -12,7 +12,7 @@
         <div class="rectangle">
             <h2>Profile Camil</h2>
             <div class="line"></div>
-            <h2>Johannes Aleksander Putra</h2>
+            <h2><%= result[0].namaCamil  %></h2>
             <div class="verification-label">
                 <div class="green-oval">
                     <p>Data Sudah Terverifikasi!</p>
@@ -31,14 +31,14 @@
                     <p><strong>RT/RW:</strong></p>
                 </div>
                 <div>
-                    <p>32729374618273</p>
-                    <p>Bandung, 8 Juni 2000</p>
+                    <p><%= result[0].idCamil %></p>
+                    <p><%= result[0].tptlahir  %>, <%= result[0].tgllahir.toLocaleDateString('en-GB');  %></p>
                     <p>Taman Holis Indah G.5</p>
-                    <p>081263712823</p>
+                    <p><%= result[0].noHP  %></p>
                     <p>Bandung</p>
                     <p>Margahayu</p>
                     <p>Pungkur</p>
-                    <p>06/09</p>
+                    <p><%= result[0].idRT  %> / <%= result[0].idRW  %></p>
                 </div>
             </div>
         </div>

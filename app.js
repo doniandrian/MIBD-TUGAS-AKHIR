@@ -76,6 +76,7 @@ app.post('/login', (req, res) => {
           if (adminResult.length > 0) {
             // Pengguna adalah seorang admin
             req.session.nik = adminResult[0].namaAdmin;
+            req.session.adminid = adminResult[0].idAdmin;
             req.session.role = 'admin';
            
             res.redirect('/admin/dashboard');
@@ -88,6 +89,7 @@ app.post('/login', (req, res) => {
               if (lurahResult.length > 0) {
                 // Pengguna adalah seorang lurah
                 req.session.nik = lurahResult[0].namaLurah;
+                req.session.lurahid = lurahResult[0].idLurah;
                 req.session.role = 'lurah';
                 res.redirect('/lurah/home');
               } else {
@@ -99,6 +101,8 @@ app.post('/login', (req, res) => {
                   if (camilResult.length > 0) {
                     // Pengguna adalah seorang camil
                     req.session.nik = camilResult[0].namaCamil;
+                    
+                    req.session.camilid = camilResult[0].idCamil;
                     req.session.role = 'camil';
                     res.redirect('/camil/home');
                   } else {
@@ -168,7 +172,10 @@ app.post('/camil/datadiri', (req, res) => {
 //routing camil
 app.get('/camil/home', auth, (req, res,next) => {
   if (req.session.role === 'camil') {
-    res.render('camil/home', {title: 'home', currentPage: 'home',login: req.session.nik });
+    
+      res.render('camil/home', {title: 'home', currentPage: 'home',login: req.session.nik});
+    
+    
   } else {
     next();
   }
@@ -184,7 +191,16 @@ app.get('/camil/lihat-tps', auth, (req, res,next) => {
 );
 app.get('/camil/profile',auth, (req, res,next) => {
   if (req.session.role === 'camil') {
-    res.render('camil/profile', {title: 'profile',currentPage: 'profile',login: req.session.nik });
+    db.query('select * from camil where idCamil = ?', [req.session.camilid], (err, result) => {
+      if (err) {
+        throw err;
+      }
+      
+      console.log(result);
+      res.render('camil/profile', {title: 'profile',currentPage: 'profile',login: req.session.nik , result});
+    });
+
+   
   } else {
     next();
   }
@@ -256,7 +272,13 @@ app.get('/lurah/home',auth, (req, res,next) => {
 );
 app.get('/lurah/profile',auth, (req, res,next) => {
   if (req.session.role === 'lurah') {
-    res.render('lurah/profile', {title: 'profile', currentPage: 'profile' });
+    db.query('select * from lurah where idLurah = ?', [req.session.lurahid], (err, result) => {
+      if (err) {
+        throw err;
+      }
+      res.render('lurah/profile', {title: 'profile', currentPage: 'profile',result });
+    });
+    
   } else {
     next();
   }

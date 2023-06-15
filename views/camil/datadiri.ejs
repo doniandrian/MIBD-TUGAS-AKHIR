@@ -1,90 +1,193 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Halaman Data Diri</title>
-    <link rel="stylesheet" type="text/css" href="/camil/signup-data-diri.css">
+    <link rel="stylesheet" type="text/css" href="/camil/signup-data-diri.css" />
     <script>
-        // Fungsi untuk mengisi opsi dropdown dengan data yang diberikan
-        function populateDropdown(selectElement, data) {
-            for (let i = 0; i < data.length; i++) {
-                let option = document.createElement("option");
-                option.text = data[i];
-                option.value = data[i];
-                selectElement.appendChild(option);
-            }
+      function populateDropdown(selectElement, data) {
+        for (let i = 0; i < data.length; i++) {
+          let option = document.createElement("option");
+          option.text = data[i];
+          option.value = data[i];
+          selectElement.appendChild(option);
         }
-        window.onload = function() {
-        // Mengisi opsi dropdown untuk Kota
-        let kotaDropdown = document.getElementById("kota");
-        let kotaData = ["Kota A", "Kota B", "Kota C"]; // Ganti dengan data sesuai kebutuhan
-        populateDropdown(kotaDropdown, kotaData);
+      }
 
-        // Mengisi opsi dropdown untuk Kecamatan
+      function handleKotaChange() {
+        let kotaDropdown = document.getElementById("kota");
         let kecamatanDropdown = document.getElementById("kecamatan");
-        let kecamatanData = ["Kecamatan A", "Kecamatan B", "Kecamatan C"]; // Ganti dengan data sesuai kebutuhan
+        let kelurahanDropdown = document.getElementById("kelurahan");
+        let rwrtDropdown = document.getElementById("RWRT");
+
+        // Mendapatkan nilai kota yang dipilih
+        let selectedKota = kotaDropdown.value;
+
+        // Menentukan data kecamatan berdasarkan kota yang dipilih
+        let kotaKecamatanMapping = {
+          "Kota A": ["Kecamatan A1", "Kecamatan A2", "Kecamatan A3"],
+          "Kota B": ["Kecamatan B1", "Kecamatan B2", "Kecamatan B3"],
+          "Kota C": ["Kecamatan C1", "Kecamatan C2", "Kecamatan C3"],
+          // Tambahkan pemetaan kota dan kecamatan lainnya di sini
+        };
+
+        let kecamatanData = kotaKecamatanMapping[selectedKota] || [];
         populateDropdown(kecamatanDropdown, kecamatanData);
 
-        // Mengisi opsi dropdown untuk Kelurahan
+        // Mengosongkan opsi kelurahan dan RW/RT
+        populateDropdown(kelurahanDropdown, []);
+        populateDropdown(rwrtDropdown, []);
+      }
+
+      function handleKecamatanChange() {
+        let kecamatanDropdown = document.getElementById("kecamatan");
         let kelurahanDropdown = document.getElementById("kelurahan");
-        let kelurahanData = ["Kelurahan A", "Kelurahan B", "Kelurahan C"]; // Ganti dengan data sesuai kebutuhan
+        let rwrtDropdown = document.getElementById("RWRT");
+
+        // Mendapatkan nilai kecamatan yang dipilih
+        let selectedKecamatan = kecamatanDropdown.value;
+
+        // Menentukan data kelurahan berdasarkan kecamatan yang dipilih
+        let kecamatanKelurahanMapping = {
+          "Kecamatan A1": [
+            "Kelurahan A1.1",
+            "Kelurahan A1.2",
+            "Kelurahan A1.3",
+          ],
+          "Kecamatan A2": [
+            "Kelurahan A2.1",
+            "Kelurahan A2.2",
+            "Kelurahan A2.3",
+          ],
+          "Kecamatan A3": [
+            "Kelurahan A3.1",
+            "Kelurahan A3.2",
+            "Kelurahan A3.3",
+          ],
+          // Tambahkan pemetaan kecamatan dan kelurahan lainnya di sini
+        };
+
+        let kelurahanData = kecamatanKelurahanMapping[selectedKecamatan] || [];
         populateDropdown(kelurahanDropdown, kelurahanData);
 
-        // Mengisi opsi dropdown untuk RW/RT
+        // Mengosongkan opsi RW/RT
+        populateDropdown(rwrtDropdown, []);
+      }
+
+      function handleKelurahanChange() {
+        let kelurahanDropdown = document.getElementById("kelurahan");
         let rwrtDropdown = document.getElementById("RWRT");
-        let rwrtData = ["RW/RT A", "RW/RT B", "RW/RT C"]; // Ganti dengan data sesuai kebutuhan
+
+        // Mendapatkan nilai kelurahan yang dipilih
+        let selectedKelurahan = kelurahanDropdown.value;
+
+        // Menentukan data RW/RT berdasarkan kelurahan yang dipilih
+        let kelurahanRWRTMapping = {
+          "Kelurahan A1.1": ["RW/RT A1.1.1", "RW/RT A1.1.2", "RW/RT A1.1.3"],
+          "Kelurahan A1.2": ["RW/RT A1.2.1", "RW/RT A1.2.2", "RW/RT A1.2.3"],
+          "Kelurahan A1.3": ["RW/RT A1.3.1", "RW/RT A1.3.2", "RW/RT A1.3.3"],
+          // Tambahkan pemetaan kelurahan dan RW/RT lainnya di sini
+        };
+
+        let rwrtData = kelurahanRWRTMapping[selectedKelurahan] || [];
         populateDropdown(rwrtDropdown, rwrtData);
-    }
-</script>
-</head>
-<body>
+      }
+
+      window.onload = function () {
+        // Mengisi opsi dropdown untuk Kota
+        let kotaDropdown = document.getElementById("kota");
+        let kotaData = ["Kota A", "Kota B", "Kota C"];
+        populateDropdown(kotaDropdown, kotaData);
+
+        // Mengisi opsi dropdown untuk Kecamatan (awalnya kosong)
+        let kecamatanDropdown = document.getElementById("kecamatan");
+        populateDropdown(kecamatanDropdown, []);
+
+        // Mengisi opsi dropdown untuk Kelurahan (awalnya kosong)
+        let kelurahanDropdown = document.getElementById("kelurahan");
+        populateDropdown(kelurahanDropdown, []);
+
+        // Mengisi opsi dropdown untuk RW/RT (awalnya kosong)
+        let rwrtDropdown = document.getElementById("RWRT");
+        populateDropdown(rwrtDropdown, []);
+
+        // Menambahkan event listener untuk perubahan nilai pada dropdown kota
+        kotaDropdown.addEventListener("change", handleKotaChange);
+
+        // Menambahkan event listener untuk perubahan nilai pada dropdown kecamatan
+        kecamatanDropdown.addEventListener("change", handleKecamatanChange);
+
+        // Menambahkan event listener untuk perubahan nilai pada dropdown kelurahan
+        kelurahanDropdown.addEventListener("change", handleKelurahanChange);
+      };
+    </script>
+  </head>
+  <body>
     <div class="container">
-        <div class="content">
-            <h2>Masukkan Data Diri Anda</h2>
-            <form method="post" action="/camil/datadiri">
-                <div class="form-group">
-                    <label for="nik">NIK:</label>
-                    <input type="text" id="nik" name="nik" placeholder="NIK..." required>
-                </div>
-                <div class="form-group">
-                    <label for="tempat">Tempat Lahir:</label>
-                    <input type="text" id="tempat" name="tempat" placeholder="Tempat Lahir..." required>
-                </div>
-                <div class="form-group">
-                    <label for="lahir">Tanggal Lahir:</label>
-                    <input type="date" id="lahir" name="lahir" required>
-                </div>
-                <div class="form-group">
-                    <label for="kota">Kota:</label>
-                    <select id="kota" name="kota" required>
-                        <option value="" selected disabled>Pilih Kota</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="kecamatan">Kecamatan:</label>
-                    <select id="kecamatan" name="kecamatan" required>
-                        <option value="" selected disabled>Pilih Kecamatan</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="kelurahan">Kelurahan:</label>
-                    <select id="kelurahan" name="kelurahan" required>
-                        <option value="" selected disabled>Pilih Kelurahan</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="RWRT">RW/RT:</label>
-                    <select id="RWRT" name="RWRT" required>
-                        <option value="" selected disabled>Pilih RW/RT</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="HP">No HP:</label>
-                    <input type="text" id="HP" name="HP" placeholder="No HP..." required>
-                </div>
-                <p>Siapkan KTP anda</p>
-                <button class="button" type="next">Next</button>
-            </form>
-        </div>
+      <div class="content">
+        <h2>Masukkan Data Diri Anda</h2>
+        <form method="post" action="/camil/datadiri">
+          <div class="form-group">
+            <label for="nik">NIK:</label>
+            <input
+              type="text"
+              id="nik"
+              name="nik"
+              placeholder="NIK..."
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="tempat">Tempat Lahir:</label>
+            <input
+              type="text"
+              id="tempat"
+              name="tempat"
+              placeholder="Tempat Lahir..."
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="lahir">Tanggal Lahir:</label>
+            <input type="date" id="lahir" name="lahir" required />
+          </div>
+          <div class="form-group">
+            <label for="kota">Kota:</label>
+            <select id="kota" name="kota" required>
+              <option value="" selected disabled>Pilih Kota</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="kecamatan">Kecamatan:</label>
+            <select id="kecamatan" name="kecamatan" required>
+              <option value="" selected disabled>Pilih Kecamatan</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="kelurahan">Kelurahan:</label>
+            <select id="kelurahan" name="kelurahan" required>
+              <option value="" selected disabled>Pilih Kelurahan</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="RWRT">RW/RT:</label>
+            <select id="RWRT" name="RWRT" required>
+              <option value="" selected disabled>Pilih RW/RT</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="HP">No HP:</label>
+            <input
+              type="text"
+              id="HP"
+              name="HP"
+              placeholder="No HP..."
+              required
+            />
+          </div>
+          <p>Siapkan KTP anda</p>
+          <button class="button" type="next">Next</button>
+        </form>
+      </div>
     </div>
-</body>
+  </body>
 </html>
