@@ -100,3 +100,10 @@ select,input[type="date"] {
     background-color: #ffffff;
     color: #333333;
   }
+
+  #RW{
+    width : 70%;
+  }
+  #RT{
+    width: 70%;
+  }

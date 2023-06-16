@@ -17,16 +17,15 @@
         let kotaDropdown = document.getElementById("kota");
         let kecamatanDropdown = document.getElementById("kecamatan");
         let kelurahanDropdown = document.getElementById("kelurahan");
-        let rwrtDropdown = document.getElementById("RWRT");
 
         // Mendapatkan nilai kota yang dipilih
         let selectedKota = kotaDropdown.value;
 
         // Menentukan data kecamatan berdasarkan kota yang dipilih
         let kotaKecamatanMapping = {
-          "Kota A": ["Kecamatan A1", "Kecamatan A2", "Kecamatan A3"],
-          "Kota B": ["Kecamatan B1", "Kecamatan B2", "Kecamatan B3"],
-          "Kota C": ["Kecamatan C1", "Kecamatan C2", "Kecamatan C3"],
+          "Bandung": ["Andir", "Astana Anyar", "Antapani"],
+          "Jakarta": ["Gambir", "Cempaka Putih", "Johar Baru"],
+          "Surabaya": ["Gunung anyar", "Mulyorejo", "Rungkut"],
           // Tambahkan pemetaan kota dan kecamatan lainnya di sini
         };
 
@@ -35,7 +34,7 @@
 
         // Mengosongkan opsi kelurahan dan RW/RT
         populateDropdown(kelurahanDropdown, []);
-        populateDropdown(rwrtDropdown, []);
+       
       }
 
       function handleKecamatanChange() {
@@ -48,20 +47,20 @@
 
         // Menentukan data kelurahan berdasarkan kecamatan yang dipilih
         let kecamatanKelurahanMapping = {
-          "Kecamatan A1": [
-            "Kelurahan A1.1",
-            "Kelurahan A1.2",
-            "Kelurahan A1.3",
+          "Andir": [
+            "Ciroyom",
+            "Garuda",
+            "Campaka",
           ],
-          "Kecamatan A2": [
-            "Kelurahan A2.1",
-            "Kelurahan A2.2",
-            "Kelurahan A2.3",
+          "Antana Anyar": [
+            "Cibadak",
+            "Panjunan",
+            "Karanganayar",
           ],
-          "Kecamatan A3": [
-            "Kelurahan A3.1",
-            "Kelurahan A3.2",
-            "Kelurahan A3.3",
+          "Antapani": [
+            "Kulon",
+            "Kidul",
+            "Tengah",
           ],
           // Tambahkan pemetaan kecamatan dan kelurahan lainnya di sini
         };
@@ -69,8 +68,7 @@
         let kelurahanData = kecamatanKelurahanMapping[selectedKecamatan] || [];
         populateDropdown(kelurahanDropdown, kelurahanData);
 
-        // Mengosongkan opsi RW/RT
-        populateDropdown(rwrtDropdown, []);
+        
       }
 
       function handleKelurahanChange() {
@@ -80,22 +78,14 @@
         // Mendapatkan nilai kelurahan yang dipilih
         let selectedKelurahan = kelurahanDropdown.value;
 
-        // Menentukan data RW/RT berdasarkan kelurahan yang dipilih
-        let kelurahanRWRTMapping = {
-          "Kelurahan A1.1": ["RW/RT A1.1.1", "RW/RT A1.1.2", "RW/RT A1.1.3"],
-          "Kelurahan A1.2": ["RW/RT A1.2.1", "RW/RT A1.2.2", "RW/RT A1.2.3"],
-          "Kelurahan A1.3": ["RW/RT A1.3.1", "RW/RT A1.3.2", "RW/RT A1.3.3"],
-          // Tambahkan pemetaan kelurahan dan RW/RT lainnya di sini
-        };
+        
 
-        let rwrtData = kelurahanRWRTMapping[selectedKelurahan] || [];
-        populateDropdown(rwrtDropdown, rwrtData);
       }
 
       window.onload = function () {
         // Mengisi opsi dropdown untuk Kota
         let kotaDropdown = document.getElementById("kota");
-        let kotaData = ["Kota A", "Kota B", "Kota C"];
+        let kotaData = ["Bandung", "Jakarta", "Surabaya"];
         populateDropdown(kotaDropdown, kotaData);
 
         // Mengisi opsi dropdown untuk Kecamatan (awalnya kosong)
@@ -106,9 +96,7 @@
         let kelurahanDropdown = document.getElementById("kelurahan");
         populateDropdown(kelurahanDropdown, []);
 
-        // Mengisi opsi dropdown untuk RW/RT (awalnya kosong)
-        let rwrtDropdown = document.getElementById("RWRT");
-        populateDropdown(rwrtDropdown, []);
+        
 
         // Menambahkan event listener untuk perubahan nilai pada dropdown kota
         kotaDropdown.addEventListener("change", handleKotaChange);
@@ -168,12 +156,18 @@
               <option value="" selected disabled>Pilih Kelurahan</option>
             </select>
           </div>
-          <div class="form-group">
-            <label for="RWRT">RW/RT:</label>
-            <select id="RWRT" name="RWRT" required>
-              <option value="" selected disabled>Pilih RW/RT</option>
-            </select>
+          <div style="display: flex;">
+            <div class="form-group">
+              <label for="RW">RW:</label>
+               <input type="text" id="RW" name="RW" placeholder="RW..." required>
+            </div>
+            <div class="form-group">
+              <label for="RT">RT:</label>
+               <input type="text" id="RT" name="RT" placeholder="RT..." required>
+            </div>
           </div>
+          
+          
           <div class="form-group">
             <label for="HP">No HP:</label>
             <input

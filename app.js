@@ -5,14 +5,14 @@ import urlencoded  from 'body-parser';
 import session from 'express-session';
 import path from 'path';
 import crypto from 'crypto';
-
+import multer from 'multer';
 
 
 
 
 
 //import {cookieParser} from 'cookie-parser';
-import {check, validationResult} from 'express-validator';
+import validator from 'validator';
 
 const app = express();
 const staticPath = path.resolve('public');
@@ -39,6 +39,21 @@ db.connect((err) => {
     }
     console.log('Connected to the database');
   });
+
+//multer
+const filestorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'images');
+  },
+  filename: (req, file, cb) => {
+    //ganti nama filenya ke nik
+    cb(null, req.body.nik + '.jpg');
+  }
+});
+
+
+
+
 //middleware
 const auth = (req, res, next) => {
     if (req.session.nik) {
@@ -141,34 +156,6 @@ app.get('/logout', (req, res) => {
 });
 
 
-//signup
-app.get('/camil/datadiri', (req, res) => {
-    res.render('camil/datadiri', { title: 'Signup', currentPage: 'signup' });
-}
-);
-let data = [];
-app.post('/camil/datadiri', (req, res) => {
-
-    
-    data.push({
-        nik: req.body.nik,
-        lahir: req.body.lahir,
-        kota: req.body.kota,
-        kecamatan: req.body.kecamatan,
-        kelurahan: req.body.kelurahan,
-        RWRT: req.body.RWRT,
-        HP: req.body.HP
-
-    })
-    console.log(data);
-    res.redirect('/camil/ktp');
-   
-
-
-
-
-}
-);
 //routing camil
 app.get('/camil/home', auth, (req, res,next) => {
   if (req.session.role === 'camil') {
@@ -206,6 +193,110 @@ app.get('/camil/profile',auth, (req, res,next) => {
   }
 }
 );
+//camil register
+
+//signup
+app.get('/camil/datadiri', (req, res) => {
+
+  res.render('camil/datadiri', { title: 'Signup', currentPage: 'signup' });
+}
+);
+
+let data = [];
+app.post('/camil/datadiri', (req, res) => {
+
+  
+  data.push({
+      nik: req.body.nik,
+      lahir: req.body.lahir,
+      tempat : req.body.tempat,
+      kota: req.body.kota,
+      kecamatan: req.body.kecamatan,
+      kelurahan: req.body.kelurahan,
+      RW: req.body.RW,
+      RT : req.body.RT,
+      Alamat: req.body.Alamat,
+      HP: req.body.HP
+
+  })
+  console.log(data);
+  
+  if(validator.isMobilePhone(data.HP, 'id-ID') && validator.isNumeric(data.nik) && validator.isLength(data.nik, {min:16, max:16} )){
+    const kota = 'SELECT idKota FROM kota WHERE ket = ?';
+    let tempkota = "";
+    db.query (kota, [data.kota], (err,result) => {
+      if (err) {
+        throw err;
+      }
+      tempkota = result[0].idKota;
+    });
+    
+
+    const query = 'INSERT INTO camil(idCamil, tptlahir, tgllahir, idRT, idRW, idKota, idKecamatan, idKelurahan, alamat, noHp) VALUES (?, ?, ?, ?, ?, ?, ?,?,?)';
+    db.query(query, [data.nik, data.tempat, data.lahir, data.RT, data,RW, tempkota, data.kecamatan, data.kelurahan,data.Alamat,data.HP ], (err, result) => {
+      if (err) {
+        throw err;
+      }
+      
+      res.redirect('/camil/ktp');
+    });
+  }else{
+    alert('Data tidak valid');
+    res.redirect('/camil/ktp');
+  }
+  
+ 
+
+
+
+
+}
+);
+
+app.get('/camil/ktp', (req, res) => {
+  res.render('camil/ktp', { title: 'ktp', currentPage: 'signup' });
+}
+);
+app.post('/camil/ktp', (req, res) => {
+  res.redirect('/camil/signup');
+}
+);
+  
+
+app.get('/camil/signup', (req, res) => {
+  res.render('camil/signup', { title: 'signup', currentPage: 'signup' });
+}
+);
+let signup = [];
+app.post('/camil/signup', (req, res) => {
+  const password = req.body.password;
+  const hashed_pass = crypto.createHash('sha256').update(password).digest('base64');
+  signup.push({
+      nama: req.body.nama,
+      email: req.body.email,
+      password: hashed_pass,
+
+
+  })
+  if(validator.isEmail(signup.email)){
+    const query = 'INSERT INTO pengguna(idPengguna, namaPengguna, email,  passPengguna) VALUES (?, ?, ?,?)';
+    db.query(query, [data.nik, signup.nama, signup.email, signup.password], (err, result) => {
+      if (err) {
+        throw err;
+      }
+      res.redirect('/login');
+    });
+  }else{
+    alert('Email tidak valid');
+    res.redirect('/camil/signup');
+  }
+ 
+  
+}
+);
+
+
+
 
 
 
@@ -313,44 +404,13 @@ app.get('/lurah/pilih-saksi',auth, (req, res,next) => {
 
 
 
-
-app.get('/camil/ktp', (req, res) => {
-    res.render('camil/ktp', { title: 'ktp', currentPage: 'signup' });
-}
-);
-app.post('/camil/ktp', (req, res) => {
-    res.redirect('/camil/signup');
-}
-);
-    
-
-app.get('/camil/signup', (req, res) => {
-    res.render('camil/signup', { title: 'signup', currentPage: 'signup' });
-}
-);
-app.post('/camil/signup', (req, res) => {
-    const password = req.body.password;
-    const hashed_pass = crypto.createHash('sha256').update(password).digest('base64');
-    data.push({
-        nama: req.body.nama,
-        email: req.body.email,
-        password: hashed_pass,
-
-
-    })
-    console.log(data);
-    res.redirect('/login');
-   
-    
-}
-);
-
-
-
-
-
-
-
+app.use('/', (req, res, next) => {
+  res.redirect('/login');
+});
+//middleware untuk menangani error 404 kalau halaman tidak ditemukan
+app.use((req, res, next) => {
+  res.status(404).send('404 - Halaman Tidak Ditemukan');
+});
 
 app.listen(8080, () => {
     console.log('Server started on port 8080');
