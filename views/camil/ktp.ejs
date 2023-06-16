@@ -13,23 +13,24 @@
             <p>(KTP)</p>
             <div id="cont">
                 <p id="up">Drop file to upload</p>
-                <form method="post" action="/camil/ktp">
+                <form method= "post" action="/camil/ktp" enctype="multipart/form-data" id="uploadForm">
                     
                     <div class="isi">
                         <img src="https://kodfun.github.io/Reels/ImagePreview/choose.png" height="250" id="gambar"
                             alt="Upload">
                         <div class="submitvalue">
-                            <input type="file" id="Submit" value="Upload">
+                            <input type="file" name="image" id="Submit" value="Upload" accept="image/png, image/jpg, image/jpeg">
                         </div>
                         <p>
                             Pastikan kartu identitas Anda terlihat dengan jelas!
                         </p>
                     </div>
                     <br>
-                    <button class="button" type="next">Next -></button>
+                    <button class="button" type="submit">Next -></button>
                 </form>
             </div>
         </div>
+    </div>
 </body>
 
 </html>
@@ -38,9 +39,13 @@
     let img = document.getElementById("gambar");
     let btn = document.getElementById("Submit");
 
-    btn.onchange = (e) => {
-        if (btn.files[0]) {
-            img.src = URL.createObjectURL(btn.files[0]);
+    btn.addEventListener("change", (e) => {
+        const file = btn.files[0];
+        if (file) {
+            img.src = URL.createObjectURL(file);
         }
-    };
+    });
+
+    
+
 </script>

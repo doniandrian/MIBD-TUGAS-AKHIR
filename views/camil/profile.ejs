@@ -12,10 +12,13 @@
         <div class="rectangle">
             <h2>Profile Camil</h2>
             <div class="line"></div>
-            <h2><%= result[0].namaCamil  %></h2>
+            <h2><%= login  %></h2>
             <div class="verification-label">
-                <div class="green-oval">
+                <div class="<%= statusresult[0].statuscamil === 'Y' ? 'green-oval' : 'hider' %>">
                     <p>Data Sudah Terverifikasi!</p>
+                </div>
+                <div class="<%= statusresult[0].statuscamil === 'N' ? 'red-oval' : 'hider' %>">
+                    <p>Data Belum Terverifikasi!</p>
                 </div>
             </div>
             <div class="spacer-line"></div>
@@ -33,11 +36,11 @@
                 <div>
                     <p><%= result[0].idCamil %></p>
                     <p><%= result[0].tptlahir  %>, <%= result[0].tgllahir.toLocaleDateString('en-GB');  %></p>
-                    <p>Taman Holis Indah G.5</p>
+                    <p><%= result[0].alamat  %></p>
                     <p><%= result[0].noHP  %></p>
-                    <p>Bandung</p>
-                    <p>Margahayu</p>
-                    <p>Pungkur</p>
+                    <p><%= result[0].kota  %></p>
+                    <p><%= result[0].kecamatan  %></p>
+                    <p><%= result[0].kelurahan  %></p>
                     <p><%= result[0].idRT  %> / <%= result[0].idRW  %></p>
                 </div>
             </div>

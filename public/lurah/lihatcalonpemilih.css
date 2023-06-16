@@ -265,3 +265,8 @@ input[type = "submit"]:is(:hover, :focus) {
 .rectangle1 button{
     margin-bottom: 20px;
 }
+
+.saksi{
+    justify-content: end;
+    
+}
