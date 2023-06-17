@@ -91,18 +91,19 @@ app.post('/login', (req, res) => {
            
             res.redirect('/admin/dashboard');
           } else {
-            db.query('SELECT * FROM lurah WHERE idLurah = ?', [idPengguna], (err, lurahResult) => {
+            db.query('SELECT * FROM lurah join pengguna on lurah.idLurah = pengguna.idPengguna WHERE idLurah = ?', [idPengguna], (err, lurahResult) => {
               if (err) {
                 throw err;
               }
               
               if (lurahResult.length > 0) {
                 // Pengguna adalah seorang lurah
-                req.session.nik = lurahResult[0].namaLurah;
+                req.session.nik = lurahResult[0].namaPengguna;
                 req.session.lurahid = lurahResult[0].idLurah;
                 req.session.idKelurahan = lurahResult[0].idKelurahan;
                 req.session.role = 'lurah';
                 res.redirect('/lurah/home');
+                
               } else {
                 db.query('SELECT * FROM camil join pengguna on camil.idCamil = pengguna.idPengguna WHERE idCamil = ?', [idPengguna], (err, camilResult) => {
                   if (err) {
@@ -314,7 +315,9 @@ const filestorage = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     //ganti nama filenya ke nik dari session
-    cb(null, file.originalname);
+    cb(null, data[data.length - 1].nik + '.jpg');
+    
+   
   }
 });
 
@@ -328,7 +331,17 @@ app.get('/camil/ktp', (req, res) => {
 );
 app.post('/camil/ktp', upload.single('image'), (req, res) => {
   console.log(req.file);
-  res.redirect('/camil/signup');
+  if (req.file) {
+    const query = 'INSERT INTO foto(idCamil, filename) VALUES (?, ?)';
+    db.query(query, [data[data.length - 1].nik, req.file.filename], (err, result) => {
+      if (err) {
+        throw err;
+      }
+      res.redirect('/camil/signup');
+    });
+  }
+  
+  
 }
 );
   
@@ -349,12 +362,21 @@ app.post('/camil/signup', (req, res) => {
 
   })
   if(validator.isEmail(signup[signup.length-1].email)){
-    const query = 'INSERT INTO pengguna(idPengguna, namaPengguna, email,  passPengguna) VALUES (?, ?, ?,?)';
+    const query = 'INSERT INTO pengguna(idPengguna, namaPengguna, email,  passPengguna) VALUES (?, ?, ?,?) ';
+    const query1 = 'insert into data(id, statuscamil, tglup) values (?, ?, ?)';
+
     db.query(query, [data[data.length-1].nik, signup[signup.length-1].nama, signup[signup.length-1].email, signup[signup.length-1].password], (err, result) => {
       if (err) {
         throw err;
       }
+      db.query(query1, [data[data.length-1].nik, 'N', new Date()], (err, result) => {
+        if (err) {
+          throw err;
+        }
+
       res.redirect('/login');
+      });
+   
     });
   }else{
     alert('Email tidak valid');
@@ -367,44 +389,51 @@ app.post('/camil/signup', (req, res) => {
 //routing camil
 app.get('/camil/home', auth, (req, res,next) => {
   if (req.session.role === 'camil') {
+    res.render('camil/home', {title: 'home', currentPage: 'home',login: req.session.nik});
     
-     const query = 'select idTPS from camil where idCamil = ?';
-      db.query(query, [req.session.camilid], (err, result) => {
-        if (err) {
-          throw err;
-        }
-        if(result[0].idTPS == null){
-          res.render('camil/home', {title: 'home', currentPage: 'home',login: req.session.nik, result});
-
-        }else{
-          db.query('select * from camil join tps on camil.idTPS = tps.idTPS where idCamil = ?', [req.session.camilid], (err, result) => {
-            if (err) {
-              throw err;
-            }
-            console.log(result);
-            res.render('camil/home', {title: 'home', currentPage: 'home',login: req.session.nik, result});
-            });
-            
-
-        
-      }
-    });
+  }
+  
     
-  } else {
+   else {
     
     next();
   }
-}
-);
+
+
+
+});
+
+
 app.get('/camil/lihat-tps', auth, (req, res,next) => {
   if (req.session.role === 'camil') {
+    const query = 'SELECT idTPS FROM camil WHERE idCamil = ?';
+    db.query(query, [req.session.camilid], (err, result) => {
+      if (err) {
+        throw err;
+      }
+      if(result[0].idTPS == null){
+        res.render('camil/lihat-tps', {title: 'home', currentPage: 'home',login: req.session.nik});
 
-    res.render('camil/lihat-tps', {title: 'lihat-tps',currentPage: 'lihat-tps',login: req.session.nik });
+      }else{
+        db.query('SELECT ko.ket AS kota, kec.ket AS kecamatan, kel.ket AS kelurahan , c.idRT AS rt, c.idRW AS rw , t.idTPS, t.ket AS kettps FROm camil AS c JOIN kota AS ko ON c.`idKota` = ko.`idkota`JOIN kecamatan AS kec ON c.`idKecamatan` = kec.`idKecamatan`JOIN kelurahan AS kel ON c.`idKelurahan` = kel.`idKelurahan`JOIN tps AS t ON c.`idTPS` = t.`idTPS` WHERE c.idCamil = ?', [req.session.camilid], (err, resultverif) => {
+          if (err) {
+            throw err;
+          }
+          console.log(resultverif);
+          res.render('camil/lihattps-verified', {title: 'lihat-tps',currentPage: 'lihat-tps',login: req.session.nik, result : resultverif });
+          
+          });
+
+        }
+      });
+    
   } else {
     next();
   }
 }
 );
+
+
 app.get('/camil/profile', auth, (req, res,next) => {
   if (req.session.role === 'camil') {
     db.query('select idCamil, noHP, tptlahir, tgllahir, alamat, kecamatan.ket as kecamatan, kelurahan.ket as kelurahan, kota.ket as kota ,idRT, idRW from camil join kota on camil.idKota = kota.idKota join kecamatan on kecamatan.idKecamatan = camil.idKecamatan join kelurahan on kelurahan.idKelurahan = camil.idKelurahan where idCamil = ?', [req.session.camilid], (err, result) => {
@@ -417,6 +446,7 @@ app.get('/camil/profile', auth, (req, res,next) => {
           throw err;
         }
         console.log(statusresult[0].statuscamil);
+        
         res.render('camil/profile', {title: 'profile',currentPage: 'profile',login: req.session.nik , result, statusresult});
       });
       
@@ -494,11 +524,13 @@ app.get('/lurah/home',auth, (req, res,next) => {
 );
 app.get('/lurah/profile',auth, (req, res,next) => {
   if (req.session.role === 'lurah') {
-    db.query('select * from lurah where idLurah = ?', [req.session.lurahid], (err, result) => {
+    db.query(`SELECT alamat, pengguna.namapengguna AS nama, lurah.idlurah AS NIK, lurah.tptlahir AS tempat, lurah.tgllahir AS tanggal, lurah.nohp AS hp, kota.ket AS kota, kecamatan.ket AS kecamatan, kelurahan.ket AS kelurahan FROM lurah JOIN kelurahan ON lurah.idkelurahan JOIN kecamatan ON kelurahan.idkecamatan = kecamatan.idkecamatan JOIN kota ON kecamatan.idkota = kota.idkota JOIN pengguna ON lurah.idlurah = pengguna.idpengguna where lurah.idlurah = ?`, [req.session.lurahid], (err, result) => {
       if (err) {
         throw err;
       }
-      res.render('lurah/profile', {title: 'profile', currentPage: 'profile',result });
+      console.log(req.session.lurahid);
+      console.log(result);
+      res.render('lurah/profile', {title: 'profile', currentPage: 'profile', namalurah: req.session.nik , result });
     });
     
   } else {
@@ -512,30 +544,129 @@ app.get('/lurah/lihat-camil', auth, (req, res, next) => {
     const start = parseInt(req.query.start) || 0;
     const show = 5;
 
-    db.query('SELECT COUNT(*) AS totalRecords FROM camil', (err, countResult) => {
-      if (err) {
-        throw err;
-      }
-      const totalRecords = countResult[0].totalRecords;
-
-      const query = `SELECT pengguna.namaPengguna, camil.idCamil, camil.alamat, tps.ket 
-                     FROM camil 
-                     JOIN pengguna ON camil.idCamil = pengguna.idPengguna 
-                     JOIN kelurahan ON kelurahan.idKelurahan = camil.idKelurahan 
-                     JOIN kecamatan ON kecamatan.idKecamatan = camil.idKecamatan 
-                     Join Lurah on kelurahan.idKelurahan = lurah.idKelurahan
-                     LEFT JOIN tps ON tps.idTPS = camil.idTPS 
-                     WHERE pengguna.namaPengguna LIKE ? AND camil.idKelurahan = ?
-                     LIMIT ?, ?`;
-
-      db.query(query, [`%${searchNama}%`, req.session.idKelurahan, start, show], (err, result) => {
+    db.query(
+      `SELECT COUNT(*) AS totalRecords FROM camil
+       JOIN kelurahan ON camil.idKelurahan = kelurahan.idKelurahan 
+       JOIN data ON camil.idCamil = data.id 
+       WHERE camil.idKelurahan = ? AND data.statuscamil = 'Y'`,
+      [req.session.idKelurahan],
+      (err, countResult) => {
         if (err) {
           throw err;
         }
+        const totalRecords = countResult[0].totalRecords;
+        console.log(totalRecords);
+
+        const query = `SELECT 
+                         pengguna.namaPengguna, 
+                         camil.idCamil, 
+                         camil.alamat, 
+                         saksi.partai, 
+                         data.statuscamil,
+                         foto.filename AS namaFile,
+                         kota.ket AS Kota,
+                         kecamatan.ket AS Kecamatan,
+                         kelurahan.ket AS Kelurahan,
+                         camil.idRT AS RT,
+                         camil.idRW AS RW,
+                         camil.tptlahir AS TempatLahir,
+                         camil.tgllahir AS TanggalLahir
+                       FROM camil 
+                       JOIN pengguna ON camil.idCamil = pengguna.idPengguna 
+                       JOIN kota ON camil.idKota = kota.idkota
+                       JOIN kelurahan ON kelurahan.idKelurahan = camil.idKelurahan 
+                       JOIN kecamatan ON kecamatan.idKecamatan = camil.idKecamatan 
+                       JOIN Lurah ON kelurahan.idKelurahan = lurah.idKelurahan
+                       LEFT JOIN tps ON tps.idTPS = camil.idTPS 
+                       LEFT JOIN saksi ON saksi.nik = camil.idCamil
+                       JOIN data ON data.id = camil.idCamil
+                       JOIN foto ON camil.idCamil = foto.idCamil
+                       WHERE pengguna.namaPengguna LIKE ? 
+                         AND camil.idKelurahan = ? 
+                         AND data.statuscamil = 'Y'
+                       LIMIT ?, ?`;
+
+        db.query(
+          query,
+          [`%${searchNama}%`, req.session.idKelurahan, start, show],
+          (err, result) => {
+            if (err) {
+              throw err;
+            }
+            console.log(result);
+
+            res.render('lurah/lihat-camil', {
+              title: 'lihat-camil',
+              currentPage: 'lihat-camil',
+              result,
+              name: searchNama,
+              totalRecords: totalRecords,
+              start: start,
+              show: show,
+            });
+
+            console.log(result);
+          }
+        );
+      }
+    );
+  } else {
+    next();
+  }
+});
+app.get('/profile/:idCamil',auth,  (req, res) => {
+  const idCamil = req.params.idCamil;
+
+  // Query ke database untuk mendapatkan data profil berdasarkan idCamil
+  db.query(
+    'select pengguna.namapengguna as nama, camil.noHP as noHP, foto.filename as namafile, camil.idcamil as idCamil, camil.tptlahir as tptlahir, camil.tgllahir as tgllahir, camil.alamat as alamat, kota.ket as kota, kecamatan.ket as kecamatan, kelurahan.ket as kelurahan, camil.idrt as idRT, camil.idrw as idRW from camil join pengguna on camil.idcamil = pengguna.idpengguna join kota on camil.idkota = kota.idkota join kecamatan on camil.idkecamatan = kecamatan.idkecamatan join kelurahan on camil.idkelurahan = kelurahan.idkelurahan join foto on camil.idcamil = foto.idcamil where camil.idcamil = ?',
+    [idCamil],
+    (err, result) => {
+      if (err) {
+        throw err;
+      }
+
+      if (result.length > 0) {
+        const profileData = result[0];
+        res.json(profileData);
+      } else {
+        res.status(404).json({ error: 'Profile not found' });
+      }
+    }
+  );
+});
+
+app.get('/lurah/lihat-tps',auth, (req, res,next) => {
+  if (req.session.role === 'lurah') {
+    const searchNama = req.query.filter || '';
+    const start = parseInt(req.query.start) || 0;
+    const show = 5;
+
+    db.query('select count(tps.idTPS) as totalRecords from tps join rt on rt.idrt = tps.idrt join rw on rt.idrw = rw.idrw join kelurahan on rw.idKelurahan = kelurahan.idKelurahan join lurah on kelurahan.idkelurahan  =  lurah.idkelurahan where lurah.idlurah = ?',[req.session.lurahid], (err, countResult) => {
+      if (err) {
+        throw err;
+      }
+      
+      const totalRecords = countResult[0].totalRecords;
+      console.log("total rekord" + totalRecords);
+
+      const query = `select tps.idTPS as nomor, kelurahan.ket as lokasi, tps.capacity as kapasitasmaks, tps.used as kapasitasterisi, tps.ket as keterangan
+                     FROM tps 
+                     JOIN rt on rt.idRT = tps.idRT 
+                     JOIN rw on rt.idRW = rw.idRW
+                     join kelurahan on rw.idKelurahan = kelurahan.idKelurahan
+                     WHERE kelurahan.idKelurahan = ?
+                     LIMIT ?, ?`;
+
+      db.query(query, [req.session.idKelurahan, start, show], (err, result) => {
+        if (err) {
+          throw err;
+        }
+        console.log(result);
         
-        res.render('lurah/lihat-camil', {
-          title: 'lihat-camil',
-          currentPage: 'lihat-camil',
+        res.render('lurah/lihat-tps', {
+          title: 'lihat-tps',
+          currentPage: 'lihat-tps',
           result,
           name: searchNama,
           totalRecords: totalRecords,
@@ -549,24 +680,83 @@ app.get('/lurah/lihat-camil', auth, (req, res, next) => {
   } else {
     next();
   }
-});
-
-app.get('/lurah/lihat-tps',auth, (req, res,next) => {
-  if (req.session.role === 'lurah') {
-    res.render('lurah/lihat-tps', {title: 'Lihat TPS', currentPage: 'lihat-tps' });
-  } else {
-    next();
-  }
 }
 );
+
+let temppartai;
 app.get('/lurah/pilih-saksi',auth, (req, res,next) => {
   if (req.session.role === 'lurah') {
-    res.render('lurah/pilih-saksi', {title: 'Pilih Saksi', currentPage: 'pilih-saksi' });
+    const nik = req.query.filter || '';
+    temppartai = nik;
+    const query = 'select * from camil join pengguna on camil.idcamil = pengguna.idpengguna where camil.idCamil = ? AND camil.idkelurahan = ?';
+    db.query(query, [nik, req.session.idKelurahan], (err, result) => {
+      if (err) {
+        throw err;
+      }
+      console.log(result);
+    res.render('lurah/pilih-saksi', {title: 'Pilih Saksi', currentPage: 'pilih-saksi', result });
+    });
   } else {
     next();
   }
 }
 );
+
+app.post('/lurah/pilih-saksi', auth, (req, res) => {
+  const partai = req.body.partai;
+  const query = 'INSERT INTO saksi(nik, partai) VALUES (?, ?)';
+  db.query(query, [temppartai, partai], (err, result) => {
+    if (err) {
+      if (err.code === 'ER_DUP_ENTRY') {
+        console.log('NIK tersebut telah dijadikan saksi sebelumnya.');
+        return res.status(400).json({ error: 'NIK tersebut telah dijadikan saksi sebelumnya.' });
+      } else {
+        console.log('Terjadi kesalahan dalam menjadikan saksi. Silakan coba lagi.', err);
+        return res.status(500).json({ error: 'Terjadi kesalahan dalam menjadikan saksi. Silakan coba lagi.' });
+      }
+    } else {
+      console.log('Saksi berhasil ditambahkan.');
+      return res.status(200).json({ message: 'Saksi berhasil ditambahkan.' });
+    }
+  });
+});
+
+
+app.get('/lurah/detail-tps/:id', (req, res) => {
+  const tpsId = req.params.id;
+
+  const query = `
+    SELECT kelurahan.ket AS lokasi,
+           tps.ket AS keterangan,
+           pengguna.namapengguna AS nama,
+           camil.idcamil AS nik,
+           camil.alamat AS alamat
+    FROM tps
+    JOIN rt ON tps.idrt = rt.idrt
+    JOIN rw ON rt.idrw = rw.idrw
+    JOIN kelurahan ON kelurahan.idkelurahan = rw.idkelurahan
+    JOIN lurah ON lurah.idkelurahan = kelurahan.idkelurahan
+    JOIN camil ON camil.idtps = tps.idtps
+    JOIN pengguna ON camil.idcamil = pengguna.idpengguna
+    WHERE tps.idtps = ?`;
+
+  db.query(query, [tpsId], (err, result) => {
+    if (err) {
+      console.log('Terjadi kesalahan dalam mengambil detail TPS.', err);
+      return res.status(500).send('Terjadi kesalahan dalam mengambil detail TPS.');
+    }
+
+    console.log(result);
+
+    if (result.length > 0) {
+      const profileData = result[0];
+      res.json(profileData);
+    } else {
+      res.status(404).json({ error: 'Profile not found' });
+    }
+  });
+});
+
 
 
 

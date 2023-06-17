@@ -303,3 +303,7 @@ h2 {
 .rectangle1 .button{
     margin-top: 15px;
 }
+
+.hider{
+    display: none;
+}

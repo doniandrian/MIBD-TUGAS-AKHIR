@@ -4,6 +4,18 @@
     <title>Halaman Data Diri</title>
     <link rel="stylesheet" type="text/css" href="/camil/signup-data-diri.css" />
     <script>
+      //validasi nik
+      function validate_nik() {
+          let nik = document.getElementById("nik");
+          let nikRegex = /^[0-9]{16}$/;
+          if (nik.value.match(nikRegex)) {
+            document.getElementById("nik-feedback").style.display = "none";
+            return true;
+          } else {
+            document.getElementById("nik-feedback").style.display = "inline";
+            return false;
+          }
+        }
       function populateDropdown(selectElement, data) {
         for (let i = 0; i < data.length; i++) {
           let option = document.createElement("option");
@@ -23,9 +35,10 @@
 
         // Menentukan data kecamatan berdasarkan kota yang dipilih
         let kotaKecamatanMapping = {
-          "Bandung": ["Andir", "Astana Anyar", "Antapani"],
-          "Jakarta": ["Gambir", "Cempaka Putih", "Johar Baru"],
-          "Surabaya": ["Gunung anyar", "Mulyorejo", "Rungkut"],
+          //MASUKIN KECAMATAN
+          Bandung: ["Andir", "Astana_Anyar", "Antapani", "Arcamanik", "Babakan_Ciparay"],
+          Jakarta: ["Cempaka_Putih", "Gambir", "Johar_Baru", "Kemayoran", "Menteng"],
+          Surabaya: ["Asemrowo", "Benowo", "Bubutan", "Bulak", "Dukuh_Pakis"],
           // Tambahkan pemetaan kota dan kecamatan lainnya di sini
         };
 
@@ -34,7 +47,6 @@
 
         // Mengosongkan opsi kelurahan dan RW/RT
         populateDropdown(kelurahanDropdown, []);
-       
       }
 
       function handleKecamatanChange() {
@@ -47,28 +59,28 @@
 
         // Menentukan data kelurahan berdasarkan kecamatan yang dipilih
         let kecamatanKelurahanMapping = {
-          "Andir": [
-            "Ciroyom",
-            "Garuda",
-            "Campaka",
-          ],
-          "Antana Anyar": [
-            "Cibadak",
-            "Panjunan",
-            "Karanganayar",
-          ],
-          "Antapani": [
-            "Kulon",
-            "Kidul",
-            "Tengah",
-          ],
+          //MASUKIN KELURAHAN
+          Andir: ["Campaka", "Ciroyom", "Garuda", "KebonJeruk", "Maleber"],
+          Antana_Anyar: ["Cibadak", "Karanganyar", "Karasak", "Nyengseret", "Panjunan"],
+          Antapani: ["Antapani Kidul", "Antapani Kulon", "Antapani Tengah", "Antapani Wetan"],
+          Arcamanik: ["Cisaranten Bina Harapan", "Cisaranten Endah", "Cisaranten Kulon", "Sukamiskin"],
+          Babakan_Ciparay: ["Margahayu", "Babakan", "Margasuka", "Sukahaji", "Cirangrang"],
+          Cempaka_Putih: ["Cempaka Putih Barat", "Cempaka Putih Timur", "Rawasari"],
+          Gambir: ["Cideng", "Duri Pulo", "Gambir", "Kebon Kelapa", "Petojo Selatan", "Petojo Utara"],
+          Johar_Baru: ["Galur", "Johar Baru", "Kampung Rawa", "Tanah Tinggi"],
+          Kemayoran: ["Cempaka Baru", "Gunung Sahari Selatan", "Harapan Mulya", "Kebon Kosong", "Kemayoran"],
+          Menteng: ["Cikini", "Gondangdia", "Kebon Sirih", "Menteng", "Pegangsaan"],
+          Asemrowo: ["Asemrowo", "Genting Kalianak", "Tambak Sarioso"],
+          Benowo: ["Kandangan", "Romokalisari", "Sememi", "Tambak Osowilangun"],
+          Bubutan: ["Alun - Alun Contong", "Bubutan", "Gundih", "Jepara", "Tembok Dukuh"],
+          Bulak: ["Bulak", "Kedungcowek", "Kenjeran", "Sukolilo Baru"],
+          Dukuh_Pakis: ["Dukuh Kupang", "Dukuh Pakis", "Gunung Sari", "Pradah Kalikendal"],
+          
           // Tambahkan pemetaan kecamatan dan kelurahan lainnya di sini
         };
 
         let kelurahanData = kecamatanKelurahanMapping[selectedKecamatan] || [];
         populateDropdown(kelurahanDropdown, kelurahanData);
-
-        
       }
 
       function handleKelurahanChange() {
@@ -77,9 +89,6 @@
 
         // Mendapatkan nilai kelurahan yang dipilih
         let selectedKelurahan = kelurahanDropdown.value;
-
-        
-
       }
 
       window.onload = function () {
@@ -96,8 +105,6 @@
         let kelurahanDropdown = document.getElementById("kelurahan");
         populateDropdown(kelurahanDropdown, []);
 
-        
-
         // Menambahkan event listener untuk perubahan nilai pada dropdown kota
         kotaDropdown.addEventListener("change", handleKotaChange);
 
@@ -106,6 +113,8 @@
 
         // Menambahkan event listener untuk perubahan nilai pada dropdown kelurahan
         kelurahanDropdown.addEventListener("change", handleKelurahanChange);
+
+        
       };
     </script>
   </head>
@@ -113,7 +122,7 @@
     <div class="container">
       <div class="content">
         <h2>Masukkan Data Diri Anda</h2>
-        <form method="post" action="/camil/datadiri">
+        <form method="post" action="/camil/datadiri" onsubmit="return validate_nik()">
           <div class="form-group">
             <label for="nik">NIK:</label>
             <input
@@ -122,7 +131,15 @@
               name="nik"
               placeholder="NIK..."
               required
+              required
+              onkeyup="validate_nik()"
             />
+            <span
+              class="nik-feedback"
+              id="nik-feedback"
+              style="display: none; color: red"
+              >NIK harus 16 digit angka</span
+            >
           </div>
           <div class="form-group">
             <label for="tempat">Tempat Lahir:</label>
@@ -156,15 +173,16 @@
               <option value="" selected disabled>Pilih Kelurahan</option>
             </select>
           </div>
-          <div style="display: flex;">
-            <div class="form-group">
-              <label for="RW">RW:</label>
-               <input type="text" id="RW" name="RW" placeholder="001" required>
-            </div>
+          <div style="display: flex">
             <div class="form-group">
               <label for="RT">RT:</label>
-               <input type="text" id="RT" name="RT" placeholder="001" required>
+              <input type="text" id="RT" name="RT" placeholder="001" required />
             </div>
+            <div class="form-group">
+              <label for="RW">RW:</label>
+              <input type="text" id="RW" name="RW" placeholder="001" required />
+            </div>
+            
           </div>
           <div class="form-group">
             <label for="HP">Alamat:</label>
@@ -176,7 +194,7 @@
               required
             />
           </div>
-          
+
           <div class="form-group">
             <label for="HP">No HP:</label>
             <input
