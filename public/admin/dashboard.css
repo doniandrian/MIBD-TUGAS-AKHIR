@@ -18,13 +18,19 @@ main{
     
 }
 
+.data{
+    border: 1px solid gray;
+    height: 100px;
+}
 .classdata1{
     display: flex;
     border: 1px solid gray;
     justify-content: space-between;
+    height: 100px;
 }
 
 #totCamil{
+    
     margin-left: 85px;
     color: #495057;
 }
@@ -87,7 +93,13 @@ main{
 }
 
 #data2{
-    margin-left: -250px;
+    margin-left: 500px;
+    margin-top: -20px;
+}
+
+#data3{
+    margin-left: 1250px;
+    margin-top: -160px;
 }
 
 .lihatTPS{
@@ -214,16 +226,22 @@ td {
 }
 
 .lihatTPSDetail{
-    margin-left: 250px;
-    margin-top: -600px;
+    margin-left: 50px;
+    margin-top: 10px;
     border: 1px solid gray;
     padding: 10px;
     width: 1240px;
 }
 
-.DetailDataTPS{
-    margin-left: 250px;
+#groupTPSPenuh{
+    margin-left: -150px;
 }
+
+.DetailDataTPS{
+    margin-left: 50px;
+}
+
+
 
 #txtDataTPS{
     position: relative;
@@ -396,3 +414,4 @@ h2 {
     top: -50px;
     width: 200px;
 }
+

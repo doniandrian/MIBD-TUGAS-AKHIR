@@ -11,16 +11,16 @@
 </head>
 
 <body>
-    
+
     <%- include('./header.ejs') %>
-    <!-- <header>
+        <!-- <header>
         <img id="logoBawaslu" src="../../public/images/logo bawaslu transparan.png">
         <img id="gambarProfile" src="../../public/images/profile.png">
     </header> -->
-    <div class="utama">
-        <%- include('./navigator.ejs') %>
-        <main>
-            <!-- <div class="lihatCamil">
+        <div class="utama">
+            <%- include('./navigator.ejs') %>
+                <main>
+                    <div class="lihatCamil">
                 <p>Data Calon Pemilih</p>
     
                 <div class="data">
@@ -46,11 +46,11 @@
                     
                 </div>
     
-                <button id="lihatLebihDetailAtauTutup">Lihat Lebih Detail</button> -->
-                <!-- <button id="lihatLebihDetailAtauTutup" onclick="hideDataPemilih()">Tutup</button> -->
+                <button id="lihatLebihDetailAtauTutup">Lihat Lebih Detail</button>
+                
             </div>
-    
-            <!-- <div class="lihatTPS">
+
+                    <div class="lihatTPS">
                 <p>Data TPS</p>
     
                 <div class="data">
@@ -77,10 +77,10 @@
                 </div>
     
                 <button id="lihatLebihDetailAtauTutup">Lihat Lebih Detail</button>
-            </div> -->
-            
+            </div>
 
-            <!-- <div class="DetailDataPemilih">
+
+                    <!-- <div class="DetailDataPemilih">
                 <p id="txtDataPemilih">Data Pemilih</p>
                 <div class="search"></div>
                 <img id="searchImage" src="/images/Search transparan abu.png" alt="search Picture">
@@ -131,97 +131,99 @@
                 </table>
             </div> -->
 
-            <div class="lihatTPSDetail">
-                <p>Data TPS</p>
-    
-                <div class="classdata1">
-                    <div id="data1">
-                        <p id="jmlTPS">Jumlah TPS</p>
-                        <img id="gambarCamera2" src="/images/div.icon-wrapper.png">
-                        <h1 id="empat">-</h1>
-                    </div>
-                    
-                    
-    
-                    <div id="data2">
-                        <p id="tpsPenuh">TPS Penuh</p>
-                        <img id="gambarTas2" src="/images/icon admin 1.png">
-                        <h1 id="tiga">-</h1>
-                    </div>
-    
-                    <div id="data3">
-                        <p id="tpsSedia">TPS yang Tersedia</p>
-                        <img id="gambarBohlam2" src="/images/icon admin 2.png">
-                        <h1 id="satu">-</h1>
-                    </div>
-                    
-                </div>
-    
-                <!-- <button id="lihatLebihDetailAtauTutup">Lihat Lebih Detail</button> -->
-                <button id="lihatLebihDetailAtauTutup">Tutup</button>
-            </div>
+                    <!-- <div class="lihatTPSDetail">
+                        <p>Data TPS</p>
 
-            <div class="DetailDataTPS">
-                <p id="txtDataTPS">Data TPS</p>
-                <div class="search"></div>
-                <img id="searchImage" src="/images/Search transparan abu.png" alt="search Picture">
-                <input type="search" id="searchBar" placeholder="Search..."></input>
-                <table>
-                    <tr>
-                        <th>No</th>
-                        <th>Nomor</th>
-                        <th>Lokasi</th>
-                        <th>Kapasitas Sisa</th>
-                        <th>Kapasitas Maksimum</th>
-                        <th>Keterangan</th>
-                    </tr>
-    
-                    <tr id="baris1">
-                        <td>#1</td>
-                        <td>21</td>
-                        <td>Babakan Ciparay</td>
-                        <td>9</td>
-                        <td>10</td>
-                        <td>Aula SMA BPK Holis</td>
-                        
-                    </tr>
-    
-                    <tr id="baris2">
-                        <td>#2</td>
-                        <td>22</td>
-                        <td>Cibadak</td>
-                        <td>11</td>
-                        <td>11</td>
-                        <td>Gedung SG 1</td>
-                        
-                    </tr>
-    
-                    <tr id="baris3">
-                        <td>#3</td>
-                        <td id="txt23">23</td>
-                        <td>Lengkong</td>
-                        <td>0</td>
-                        <td>10</td>
-                        <td>Taman Karta</td>
-                        
-                    </tr>
-    
-                    
-    
-                </table>
-            </div>
+                        <div class="classdata1">
+                            <div id="data1detail">
+                                <p id="jmlTPS">Jumlah TPS</p>
+                                <img id="gambarCamera2" src="/images/div.icon-wrapper.png">
+                                <h1 id="empat">-</h1>
+                            </div>
 
-            <div class="popup">
+
+
+                            <div id="data2detail">
+                                <div id="groupTPSPenuh">
+                                    <p id="tpsPenuh">TPS Penuh</p>
+                                    <img id="gambarTas2" src="/images/icon admin 1.png">
+                                    <h1 id="tiga">-</h1>
+                                </div>
+                            </div>
+
+                            <div id="data3detail">
+                                <p id="tpsSedia">TPS yang Tersedia</p>
+                                <img id="gambarBohlam2" src="/images/icon admin 2.png">
+                                <h1 id="satu">-</h1>
+                            </div>
+
+                        </div> -->
+
+                        <!-- <button id="lihatLebihDetailAtauTutup">Lihat Lebih Detail</button> -->
+                        <!-- <button id="lihatLebihDetailAtauTutup">Tutup</button> -->
+                    </div>
+
+                    <!-- <div class="DetailDataTPS">
+                        <p id="txtDataTPS">Data TPS</p>
+                        <div class="search"></div>
+                        <img id="searchImage" src="/images/Search transparan abu.png" alt="search Picture">
+                        <input type="search" id="searchBar" placeholder="Search..."></input>
+                        <table>
+                            <tr>
+                                <th>No</th>
+                                <th>Nomor</th>
+                                <th>Lokasi</th>
+                                <th>Kapasitas Sisa</th>
+                                <th>Kapasitas Maksimum</th>
+                                <th>Keterangan</th>
+                            </tr>
+
+                            <tr id="baris1">
+                                <td>#1</td>
+                                <td>21</td>
+                                <td>Babakan Ciparay</td>
+                                <td>9</td>
+                                <td>10</td>
+                                <td>Aula SMA BPK Holis</td>
+
+                            </tr>
+
+                            <tr id="baris2">
+                                <td>#2</td>
+                                <td>22</td>
+                                <td>Cibadak</td>
+                                <td>11</td>
+                                <td>11</td>
+                                <td>Gedung SG 1</td>
+
+                            </tr>
+
+                            <tr id="baris3">
+                                <td>#3</td>
+                                <td id="txt23">23</td>
+                                <td>Lengkong</td>
+                                <td>0</td>
+                                <td>10</td>
+                                <td>Taman Karta</td>
+
+                            </tr>
+
+
+
+                        </table>
+                    </div> -->
+
+                    <!-- <div class="popup">
                 <div class="container">
                     <div class="navigator">
-                       <!-- include navigator camil -->
+                       //include navigator camil
             
             
                     </div>
                     <div class="profile">
                         <div class="rectangle">
                             <h1>Profile Calon Pemilih</h1>
-                            <!-- <img id="imgCloseButton" src="/images/close button transparan.png" alt="closeButton Picture"> -->
+                            //<img id="imgCloseButton" src="/images/close button transparan.png" alt="closeButton Picture">
                             <div class="line"></div>
                             <h2>Johannes Putra</h2>
                             <p id="textFotoKTP">Foto KTP</p>
@@ -258,19 +260,16 @@
                 <div class="container">
                     
                 </div>
-            </div>
+            </div> -->
 
-        </main>
+                </main>
 
-    </div>
-    <menu>
+        </div>
+        <menu>
 
-    </menu>
+        </menu>
 
-    
+
 </body>
 
 </html>
-   
-
-    

@@ -1,4 +1,4 @@
-p{
+p {
     margin-left: 300px;
     margin-top: -560px;
     border-bottom: 1px solid gray;
@@ -6,9 +6,9 @@ p{
     width: 1180px;
 }
 
-#buttonTambah{
+#buttonTambah {
     position: relative;
-    top:-120px;
+    top: -120px;
     left: 1400px;
     background-color: #73A839;
     color: white;
@@ -18,10 +18,10 @@ p{
     padding-right: 15px;
 }
 
-#textTambah{
+#textTambah {
     position: relative;
     left: 1411px;
-    top:-70px;
+    top: -70px;
     z-index: 2;
     color: white;
     max-width: 10px;
@@ -54,7 +54,7 @@ td {
     border: 0;
 }
 
-td button{
+td button {
     background-color: white;
     border: 0;
     padding: 0;
@@ -75,14 +75,15 @@ td button{
     margin-top: -100px;
 }
 
-.popup{
+.popup {
     position: relative;
     left: -250px;
     /* top: -90px; */
-    top:-300px;
+    top: -300px;
     z-index: 99;
 
 }
+
 .container {
     position: absolute;
     transform: translate(-50%, -50%);
@@ -109,9 +110,9 @@ h1 {
     font-weight: 500;
 }
 
-#imgCloseButton{
+#imgCloseButton {
     position: relative;
-    left:315px;
+    left: 315px;
     top: 30px;
     width: 30px;
     padding: 0;
@@ -142,21 +143,21 @@ h2 {
     border: 0;
 }
 
-#textKeterangan{
+#textKeterangan {
     width: 610px;
     position: relative;
-    top:375px;
-    left:-135px;
-    border:0;
+    top: 375px;
+    left: -135px;
+    border: 0;
     border-bottom: 2px solid #EF4C59;
-    
-    
+
+
 }
 
-#table2{
+#table2 {
     width: 650px;
     position: relative;
-    top:375px;
+    top: 375px;
     left: 15px;
 }
 
@@ -174,32 +175,32 @@ h2 {
     max-height: 50px;
 }
 
-.popup2{
+.popup2 {
     position: absolute;
-    top:900px;
+    top: 900px;
     left: 510px;
 }
 
-#imgCloseButton{
+#imgCloseButton {
     position: absolute;
-    left:125px;
+    left: 125px;
     top: -275px;
     width: 30px;
     padding: 0;
 
 }
 
-#txtmasukanDataTPS{
-    position:absolute;
-    top:-270px;
+#txtmasukanDataTPS {
+    position: absolute;
+    top: -270px;
     left: -350px;
     font-size: 28px;
 }
 
-#txtNomorTPS{
+#txtNomorTPS {
     position: absolute;
-    top:375px;
-    left:-730px;
+    top: 375px;
+    left: -730px;
     width: 500px;
     border: 0;
 }
@@ -213,17 +214,18 @@ h2 {
 
 } */
 
-#noTPS{
+#noTPS {
     position: absolute;
-    top:-150px;
-    left:-420px;
+    top: -150px;
+    left: -420px;
     width: 495px;
-    border:0;
+    border: 0;
 }
-.spacer-line3{
+
+.spacer-line3 {
     position: absolute;
-    top:-150px;
-    left:-420px;
+    top: -150px;
+    left: -420px;
     width: 300px;
     height: 1px;
     background-color: gray;
@@ -233,39 +235,40 @@ h2 {
     width: 500px;
 }
 
-#txtLokasiTPS{
+#txtLokasiTPS {
     position: absolute;
-    top:650px;
-    top:450px;
-    left:-730px;
+    top: 650px;
+    top: 450px;
+    left: -730px;
     border: 0;
 }
-#dropdownLokasiTPS{
+
+#dropdownLokasiTPS {
     position: absolute;
-    top:-75px;
-    left:-423px;
+    top: -75px;
+    left: -423px;
     width: 505px;
-    border:0;
+    border: 0;
 }
 
 
-#lokasiTPS{
+#lokasiTPS {
     position: absolute;
-    top:-75px;
-    left:-420px;
+    top: -75px;
+    left: -420px;
     width: 495px;
-    border:0;
+    border: 0;
 }
 
-#txtKapasitasMaksimum{
+#txtKapasitasMaksimum {
     position: absolute;
-    top:525px;
+    top: 525px;
     left: -730px;
     width: 500px;
     border: 0;
 }
 
-.spacer-line4{
+.spacer-line4 {
     position: absolute;
     top: -75px;
     left: -420px;
@@ -278,15 +281,15 @@ h2 {
     width: 500px;
 }
 
-#kapasitasTPS{
+#kapasitasTPS {
     position: absolute;
-    top:10px;
-    left:-420px;
+    top: 10px;
+    left: -420px;
     border: 0;
     width: 495px;
 }
 
-.spacer-line5{
+.spacer-line5 {
     position: absolute;
     top: 5px;
     left: -420px;
@@ -299,31 +302,31 @@ h2 {
     width: 500px;
 }
 
-#content{
+#content {
     position: absolute;
-    top:200px;
-    left:500px;
+    top: 200px;
+    left: 500px;
 }
 
-#txtKeterangan{
+#txtKeterangan {
     position: absolute;
-    top:600px;
+    top: 600px;
     left: -730px;
     width: 500px;
     border: 0;
 }
 
-#keteranganTPS{
+#keteranganTPS {
     position: absolute;
-    top:80px;
+    top: 80px;
     left: -420px;
     width: 495px;
     border: 0;
 }
 
-.spacer-line6{
+.spacer-line6 {
     position: absolute;
-    top:80px;
+    top: 80px;
     left: -420px;
     height: 1px;
     background-color: gray;
@@ -333,9 +336,9 @@ h2 {
     width: 500px;
 }
 
-#buttonSimpan{
+#buttonSimpan {
     position: absolute;
-    top:200px;
+    top: 200px;
     left: -200px;
     color: white;
     background-color: #41cb2b;
@@ -345,6 +348,44 @@ h2 {
     padding-left: 20px;
     padding-right: 20px;
     font-size: 20px;
-    }
+}
 
+#imgChart {
+    position: absolute;
+    top: 130px;
+    left: 1350px;
+    width: 30px;
+    padding: 0;
+}
 
+#buttonChart {
+    background-color: white;
+    border: 0;
+    padding: 0;
+}
+
+#txtGrafikTPS {
+    position: absolute;
+    top: -100px;
+    left: 275px;
+    width: 150px;
+}
+
+#buttonTutup2 {
+    position: absolute;
+    color: white;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color: #34B4B3;
+    border-radius: 20px;
+    border: 0;
+    max-height: 50px;
+    top: 450px;
+}
+
+.popup3{
+    position: absolute;
+    left: 600px;
+    top:450px;
+}
