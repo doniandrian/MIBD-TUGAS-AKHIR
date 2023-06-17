@@ -1,13 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
+    <title>
+        <%=title%>
+    </title>
+    <link rel="stylesheet" type="text/css" href="/admin/daftarpengalokasian.css">
+
 </head>
+
 <body>
     <%- include('./header.ejs') %>
-    <%- include('./navigator.ejs') %>
+        <%- include('./navigator.ejs') %>
+
+            <p>Daftar Pengalokasian TPS</p>
+            <h2 id="textTambah">+</h2>
+
+            <button id="buttonTambah">Tambah</button>
+            <table>
+                <tr>
+                    <th>No</th>
+                    <th>Nomor</th>
+                    <th>Lokasi</th>
+                    <th>Kapasitas Terisi</th>
+                    <th>Kapasitas Maksimum</th>
+                    <th>Kapasitas Sisa</th>
+                    <th>Keterangan</th>
+                    <th>Detail</th>
+                    <th>Actions</th>
+                </tr>
+
+                <tr id="baris1">
+                    <td>#1</td>
+                    <td>21</td>
+                    <td>Babakan Ciparay</td>
+                    <td>1</td>
+                    <td>10</td>
+                    <td>9</td>
+                    <td>Aula SMA BPK Holis</td>
+                    <td><button id="buttonDetail">Detail</button></td>
+                    <td>
+                        <button>
+                            <img id="imgEdit" src="/images/edit button.png" alt="Edit Picture">
+                        </button>
+                        <button>
+                            <img id="imgDelete" src="/images/delete button.png" alt="Delete Picture">
+                        </button>
+                    </td>
+
+                </tr>
+
+                <tr id="baris2">
+                    <td>#2</td>
+                    <td>22</td>
+                    <td>Cibadak</td>
+                    <td>0</td>
+                    <td>11</td>
+                    <td>11</td>
+                    <td>Gedung SG 1</td>
+                    <td><button id="buttonDetail">Detail</button></td>
+                    <td>
+                        <button>
+                            <img id="imgEdit" src="/images/edit button.png" alt="Edit Picture">
+                        </button>
+                        <button>
+                            <img id="imgDelete" src="/images/delete button.png" alt="Delete Picture">
+                        </button>
+
+
+                    </td>
+
+                </tr>
+
+                <tr id="baris3">
+                    <td>#3</td>
+                    <td id="txt23">23</td>
+                    <td>Lengkong</td>
+                    <td>10</td>
+                    <td>10</td>
+                    <td>0</td>
+                    <td>Taman Karta</td>
+                    <td><button id="buttonDetail">Detail</button></td>
+                    <td>
+                        <button>
+                            <img id="imgEdit" src="/images/edit button.png" alt="Edit Picture">
+                        </button>
+                        <button>
+                            <img id="imgDelete" src="/images/delete button.png" alt="Delete Picture">
+                        </button>
+
+
+                    </td>
+                </tr>
+
+                <tr id="baris4">
+                    <td>#4</td>
+                    <td id="txt23">24</td>
+                    <td>Bojong Soang</td>
+                    <td>1</td>
+                    <td>10</td>
+                    <td>9</td>
+                    <td>SMAN 1 Bojong Soang</td>
+                    <td><button id="buttonDetail">Detail</button></td>
+                    <td>
+                        <button>
+                            <img id="imgEdit" src="/images/edit button.png" alt="Edit Picture">
+                        </button>
+                        <button>
+                            <img id="imgDelete" src="/images/delete button.png" alt="Delete Picture">
+                        </button>
+
+
+                    </td>
+                </tr>
+
+
+
+            </table>
+
+            <div class="popup">
+                <div class="container">
+                    <div class="navigator">
+                        <!-- include navigator camil -->
+
+
+                    </div>
+                    <div class="profile">
+                        <div class="rectangle">
+                            <h1>Detail TPS</h1>
+                            <!-- <img id="imgCloseButton" src="/images/close button transparan.png" alt="closeButton Picture"> -->
+
+                            <p id="textLokasi">Lokasi: Babakan Ciparay</p>
+                            <p id="textKeterangan">Keterangan: Aula SMA BPK Holis</p>
+
+                            <table id="table2">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Name</th>
+                                    <th>NIK</th>
+                                    <th>Alamat</th>
+                                </tr>
+
+                                <tr id="baris1">
+                                    <td>#1</td>
+                                    <td>Johanes Putra</td>
+                                    <td>32729374618273</td>
+                                    <td>Taman Holis</td>
+
+                                </tr>
+
+                                <tr id="baris2">
+                                    <td>#2</td>
+                                    <td>Alexander</td>
+                                    <td>32729374618123</td>
+                                    <td>Taman Holis</td>
+                                </tr>
+                            </table>
+                            <button id="buttonTutup">Tutup</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="container">
+
+                </div>
+            </div>
+
+            <div class="popup2">
+                <div class="container">
+                    <div class="navigator">
+                        <!-- include navigator camil -->
+
+
+                    </div>
+                    <div class="profile">
+                        <div class="rectangle">
+                            <div id="content">
+                                <h1 id="txtmasukanDataTPS">Silahkan masukan data TPS</h1>
+                                <button>
+                                    <img id="imgCloseButton" src="/images/close button transparan.png"
+                                        alt="closeButton Picture">
+                                </button>
+                                <p id="txtNomorTPS">Nomor TPS:</p>
+                                    <input type="text" id="noTPS" name="noTPS">
+                                <div class="spacer-line3"></div>
+
+                                <p id="txtLokasiTPS">Lokasi TPS:</p>
+                                <input type="text" id="lokasiTPS" name="lokasiTPS">
+                                <div class="spacer-line4"></div>
+
+                                <p id="txtKapasitasMaksimum">Kapasitas Maksimum</p>
+                                <input type="text" id="kapasitasTPS" name="kapasitasTPS">
+                                <div class="spacer-line5"></div>
+
+                                <p id="txtKeterangan">Keterangan</p>
+                                <input type="text" id="keteranganTPS" name="keteranganTPS">
+                                <div class="spacer-line6"></div>
+
+                                <button id="buttonSimpan">Simpan</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="container">
+
+                </div>
+            </div>
 </body>
+
 </html>

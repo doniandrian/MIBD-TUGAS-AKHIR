@@ -18,7 +18,7 @@
                 <p id="txt1">Request Verifikasi Data Calon Pemilih</p>
                 <div class="search"></div>
                 <img id="searchImage" src="/images/Search transparan abu.png" alt="search Picture">
-                <input type="search" id="txt2" placeholder="Search..."></input>
+                <input type="search" id="searchBar" placeholder="Search..."></input>
             
 
             <table>
@@ -41,7 +41,7 @@
                     <td>Bojong Soang</td>
                     <td><button id="buttonBelumVerif">Belum Terverfikasi</button></td>
                     <td><button id="buttonDetail">Detail</button></td>
-                    <td><button id="buttonAlokasi">Alokasi TPS</button></td>
+                    <td><button id="buttonAlokasi1">Alokasi TPS</button></td>
                 </tr>
 
                 <tr id="baris2">
@@ -80,12 +80,15 @@
                     </div>
                     <div class="profile">
                         <div class="rectangle">
-                            <h2>Profile Calon Pemilih</h2>
+                            <h1>Profile Calon Pemilih</h1>
+                            <img id="imgCloseButton" src="/images/close button transparan.png" alt="closeButton Picture">
                             <div class="line"></div>
-                            <h2>Johannes Aleksander Putra</h2>
+                            <h2>Johannes Putra</h2>
+                            <p id="textFotoKTP">Foto KTP</p>
+                            <img id="imgKTP" src="/images/ktp.png" alt="KTP Picture">
                             <div class="spacer-line"></div>
                             <div class="profile-details">
-                                <div>
+                                <div class="labelData">
                                     <p><strong>NIK:</strong></p>
                                     <p><strong>Tempat, Tanggal Lahir:</strong></p>
                                     <p><strong>Alamat:</strong></p>
@@ -95,7 +98,7 @@
                                     <p><strong>Kelurahan:</strong></p>
                                     <p><strong>RT/RW:</strong></p>
                                 </div>
-                                <div>
+                                <div class="data">
                                     <p>32729374618273</p>
                                     <p>Bandung, 8 Juni 2000</p>
                                     <p>Taman Holis Indah G.5</p>
@@ -104,8 +107,28 @@
                                     <p>Margahayu</p>
                                     <p>Pungkur</p>
                                     <p>06/09</p>
+                                    <button id="buttonVerif">Verifikasi</button>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="rectangle2">
+                            <h1 id="txtAlokasiTPS">Alokasikan TPS</h1>
+                            <h2 id="txtNama">Johannes Putra</h2>
+                            <p id="txtNIK">32729374618273</p>
+                            <div class="spacer-line2"></div>
+
+                            <h2 id="txtPilihTPS">Pilih TPS</h2> 
+                            <p id="txtNomorTPS">Nomor TPS</p>
+                            <select id="dropdownTPS">
+                                <option value="tps1">Pilih Nomor TPS</option>
+                                <option value="tps1">TPS 21</option>
+                                <option value="tps2">TPS 22</option>
+                                <option value="tps3">TPS 23</option>
+                              </select>
+                              <div class="spacer-line3"></div>
+                            <button id="buttonSimpan">Simpan</button>
+
                         </div>
             
                     </div>

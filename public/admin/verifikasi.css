@@ -1,49 +1,56 @@
-table{
-    width:1200px ;
+table {
+    width: 1200px;
     margin-left: 275px;
     margin-top: -30px;
 }
 
-td{
+td {
     text-align: center;
 }
 
-th,td{
+th,
+td {
     padding: 10px;
 }
 
-.isi{
+.isi {
     position: relative;
-    top:-50px
+    top: -50px
 }
 
-#buttonBelumVerif{
+#buttonBelumVerif {
     background-color: #C71C22;
     color: white;
     border-radius: 16px;
 }
 
-#buttonDetail{
+#buttonDetail {
     color: white;
     background-color: #033C73;
     border-radius: 2px;
     padding: 7px;
 }
 
-#buttonAlokasi{
+#buttonAlokasi {
     padding: 5px;
     color: white;
     background-color: #87a2bd
-    
-    /* background-image:linear-gradient(#295988,#033C73) ; */
+        /* background-image:linear-gradient(#295988,#033C73) ; */
 }
 
-#txt1{
-margin-left: 300px;
-margin-top: -535px;
-border-bottom: 2px solid #495057;
-padding: 10px;
-width: 1200px;
+#buttonAlokasi1{
+    padding: 5px;
+    color: white;
+    background-color: #033C73
+        /* background-image:linear-gradient(#295988,#033C73) ; */
+}
+
+#txt1 {
+    margin-left: 300px;
+    margin-top: -535px;
+    border-bottom: 2px solid #495057;
+    padding: 10px;
+    width: 1200px;
 }
 
 /* .search{
@@ -54,7 +61,7 @@ width: 1200px;
     height:40px ;
     
 } */
-#txt2{
+#searchBar {
     position: relative;
     top: -60px;
     left: 1250px;
@@ -62,7 +69,7 @@ width: 1200px;
     padding-left: 28px;
     padding-bottom: 5px;
     width: 200px;
-    
+
 }
 
 #searchImage {
@@ -95,14 +102,14 @@ width: 1200px;
     position: absolute;
     transform: translate(-50%, -50%);
     top: 50%;
-    left:50%;
+    left: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     /* height: 100vh; */
     max-width: 100px;
     column-gap: 100px;
-    background-color: #f2f2f2;
+    /* background-color: #f2f2f2; */
     background-image: url('/images/background/potensi1.jpeg');
     background-size: cover;
     background-position: center;
@@ -115,7 +122,7 @@ width: 1200px;
     align-items: center;
     justify-content: center;
     background-color: #fff;
-    width: 700px;
+    width: 600px;
     height: 530px;
     padding: 40px;
     border-radius: 10px;
@@ -124,22 +131,121 @@ width: 1200px;
     margin-top: 70px;
 }
 
-h2 {
-    margin: 10px 0;
+.rectangle2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    width: 600px;
+    height: 530px;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    margin-left: -30px;
+    margin-top: 70px;
 }
 
-.line {
-    width: 100%;
-    height: 2px;
-    background-color: #EF4C59;
-    margin-bottom: 20px;
+#txtAlokasiTPS{
+    position: relative;
+    top: -80px;
 }
 
-.spacer-line {
-    width: 100%;
+#txtNama{
+    position: relative;
+    top: -110px;
+}
+
+#txtNIK{
+    position: relative;
+    top: -140px;
+}
+
+#txtPilihTPS{
+    position:relative;
+    left: -150px;
+    top:-50px;
+}
+
+#txtNomorTPS{
+    position:relative;
+    top:-130px;
+    left: -20px;
+    color: #999999;
+}
+
+
+.spacer-line2{
+    position: relative;
+    top: -150px;
+    width: 95%;
     height: 1px;
     background-color: lightgrey;
     margin: 20px 0;
+    border: none;
+    border-top: 2px solid lightgrey;
+}
+
+h1 {
+    position: relative;
+    top: 100px;
+    /* top:-50px; */
+    /* margin: 10px 0; */
+    font-weight: 500;
+}
+
+#imgCloseButton{
+    position: relative;
+    left:315px;
+    top: 30px;
+    width: 30px;
+
+}
+
+h2 {
+    position: relative;
+    top: 75px;
+    font-weight: 400;
+}
+
+.labelData {
+    /* padding-left: 50px;
+    padding-top: 200px; */
+    position: relative;
+    top: -120px;
+    left: -75px;
+}
+
+.data {
+    /* padding-left: 140px;
+    padding-top: 200px; */
+    position: relative;
+    top: -120px;
+    left: 100px;
+
+}
+
+.line {
+    position: relative;
+    top: 75px;
+    width: 100%;
+    height: 2px;
+    /* background-color: #EF4C59; */
+    /* margin-bottom: 20px; */
+    z-index: 9999;
+    border: none;
+    border-top: 2px solid #EF4C59;
+}
+
+.spacer-line {
+    position: relative;
+    top: -95px;
+    width: 95%;
+    height: 1px;
+    background-color: lightgrey;
+    margin: 20px 0;
+    border: none;
+    border-top: 2px solid lightgrey;
 }
 
 .profile-details {
@@ -172,4 +278,61 @@ h2 {
     padding: 5px 10px;
     margin-top: -10px;
 }
-  
+
+#textFotoKTP {
+    margin-left: -450px;
+    padding-top: 50px;
+}
+
+#buttonVerif {
+    color: white;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color: #41cb2b;
+    border-radius: 20px;
+    border: 0;
+    position: relative;
+    left: -180px;
+    top:5px
+
+}
+
+
+#imgKTP {
+    position: relative;
+    top: -50px;
+    width: 200px;
+}
+
+#dropdownTPS{
+    position: relative;
+    top:-140px;
+    left: 85px;
+    width: 300px;
+    border:0;
+
+}
+
+.spacer-line3{
+    position: relative;
+    top: -150px;
+    left: 90px;
+    width: 300px;
+    height: 1px;
+    background-color: lightgrey;
+    margin: 20px 0;
+    border: none;
+    border-top: 2px solid lightgrey;
+}
+
+#buttonSimpan{
+color: white;
+background-color: #41cb2b;
+border: 0;
+border-radius: 15px;
+padding: 5px;
+padding-left: 20px;
+padding-right: 20px;
+font-size: 20px;
+}
