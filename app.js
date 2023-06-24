@@ -7,10 +7,13 @@ import path from "path";
 import crypto from "crypto";
 import multer from "multer";
 
+<<<<<<< HEAD
 import fs from "fs";
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
 
+=======
+>>>>>>> 1bda64646348a405139bc7a143fb2e7328882591
 //import {cookieParser} from 'cookie-parser';
 import validator from "validator";
 
@@ -23,6 +26,7 @@ app.use(
   session({
     secret: "kelompok7",
     resave: false,
+<<<<<<< HEAD
     saveUninitialized: true,
   })
 );
@@ -182,6 +186,69 @@ app.get("/logout", (req, res) => {
 
 //camil register
 
+=======
+    saveUninitialized: true
+  })); 
+
+  
+app.set('view engine', 'ejs');
+app.use(express.urlencoded({ extended: true }));
+
+//login
+
+
+//routing admin
+app.get('/admin/dashboard', (req, res) => {
+    res.render('admin/dashboard', { title: 'Dashboard', currentPage: 'dashboard' });
+}
+);
+
+app.get('/admin/cetakkartu', (req, res) => {
+    res.render('admin/cetakkartu', {title: 'CetakKartu',currentPage: 'cetakkartu' });
+}
+);
+
+
+app.get('/admin/profile', (req, res) => {
+    res.render('admin/profile', {title: 'Profile', currentPage: 'profile' });
+}
+);
+
+
+app.get('/admin/daftarpengalokasian', (req, res) => {
+    res.render('admin/daftarpengalokasian', { title: 'DaftarPengalokasian',currentPage: 'daftarpengalokasian' });
+}
+);
+app.get('/admin/verifikasi', (req, res) => {
+    res.render('admin/verifikasi', { title: 'Verifikasi',currentPage: 'verifikasi' });
+}
+);
+
+//routing camil
+app.get('/camil/home', (req, res) => {
+    res.render('camil/home', {currentPage: 'home' });
+}
+);
+app.get('/camil/lihat-tps', (req, res) => {
+    res.render('camil/lihat-tps', {currentPage: 'lihat-tps' });
+}
+);
+app.get('/camil/profile', (req, res) => {
+    res.render('camil/profile', {currentPage: 'profile' });
+}
+);
+
+
+//routing lurah
+
+
+//login
+app.get('/login', (req, res) => {
+    res.render('login', { title: 'Login', currentPage: 'login' });
+}
+);
+
+>>>>>>> 1bda64646348a405139bc7a143fb2e7328882591
 //signup
 app.get("/camil/datadiri", async (req, res) => {
   res.render("camil/datadiri", { title: "Signup", currentPage: "signup" });
@@ -256,6 +323,7 @@ function executeQuery(query, params) {
     });
   });
 }
+<<<<<<< HEAD
 
 // let data = [];
 // app.post('/camil/datadiri', async(req, res) => {
@@ -1025,6 +1093,42 @@ app.get("/lurah/pilih-saksi", auth, (req, res, next) => {
     next();
   }
 });
+=======
+);
+
+
+
+app.get('/camil/ktp', (req, res) => {
+    res.render('camil/ktp', { title: 'ktp', currentPage: 'signup' });
+}
+);
+app.post('/camil/ktp', (req, res) => {
+    res.redirect('/camil/signup');
+}
+);
+    
+
+app.get('/camil/signup', (req, res) => {
+    res.render('camil/signup', { title: 'signup', currentPage: 'signup' });
+}
+);
+app.post('/camil/signup', (req, res) => {
+    const password = req.body.password;
+    const hashed_pass = crypto.createHash('sha256').update(password).digest('base64');
+    data.push({
+        nama: req.body.nama,
+        email: req.body.email,
+        password: hashed_pass,
+
+
+    })
+    console.log(data);
+    res.redirect('/login');
+   
+    
+}
+);
+>>>>>>> 1bda64646348a405139bc7a143fb2e7328882591
 
 app.post("/lurah/pilih-saksi", auth, (req, res) => {
   const partai = req.body.partai;

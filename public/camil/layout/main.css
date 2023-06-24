@@ -48,24 +48,16 @@ header {
     background-color: #EF4C59;
 }
 
-.profile {
-    width: 10%;
-    height: 10%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center; /* Add this line to center align the text */
-}
-
 .profile img {
     width: 100px;
     height: 100px;
-    margin-bottom: -10px; /* Increase margin-bottom to create space between the image and text */
+    border-radius: 50%;
+    margin-right: -100px;
 }
 
-.profile p {
-    margin: 0; /* Reset the default margin */
+.profile p{
+    margin-top: -20px;
+    margin-right: 50px;
 }
 
 .background {
@@ -118,10 +110,9 @@ header {
     align-items: center;
     justify-content: center;
     width: 100px;
-    height: 85px;
+    height: 100px;
     margin: 10px 0;
     border-radius: 10px;
-    padding-bottom: -10px;
     color: #333;
     text-decoration: none;
     font-weight: bold;
