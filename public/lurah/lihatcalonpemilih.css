@@ -3,27 +3,41 @@ body {
     padding: 0;
     overflow: hidden;
 }
+@keyframes transitionIn {
+    from{
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 
 .container {
+    
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     background-color: #f2f2f2;
-    background-image: url('../../public/images/background\ potensi1.jpeg');
+    background-image: url('/images/—Pngtree—indonesia\ independence\ day\ festival\ celebration_1453036.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
 .rectangle {
+    animation: transitionIn 0.75s;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: #fff;
-    width: 1200px;
-    padding: 60px;
+    width: 950px;
+    padding: 40px;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
@@ -33,59 +47,112 @@ h2 {
 }
 
 .line {
-    width: 850px;
+    width: 100%;
     height: 2px;
     background-color: #EF4C59;
     margin-bottom: 20px;
 }
 
-.textbox {
-    width: 850px;
-    height: 30px;
-    padding: 5px;
-    border: 1px solid lightgrey;
-    border-radius: 20px;
-    box-sizing: border-box;
-    margin-bottom: 20px;
+.spacer-line {
+    width: 100%;
+    height: 1px;
+    background-color: lightgrey;
+    margin: 20px 0;
 }
 
-.row1 {
+.profile-details {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 20px;
+    /* Increase the value to add more distance between columns */
+    text-align: left;
+}
+
+.profile-details p {
+    margin: 10px 0;
+    text-align: left;
+}
+
+.verification-label {
     display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.verification-label p {
+    margin: 0;
+    font-weight: bold;
+    color: #fff;
+}
+
+.vertical-navbar {
+    border-radius: 20px;
+    position: fixed;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: space-between;
+    background-color: #f2f2f2;
+    padding: 20px;
+    height: 85vh; /* Set the height to 75% of the viewport height */
+    overflow-y: auto; /* Add scrollbars if needed */
+}
+
+.navbar-link {
+    display: block;
+    text-decoration: none;
+    color: #000;
     margin-bottom: 10px;
 }
 
-.row2 {
+.nav-button {
     display: flex;
-    justify-content:space-between;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    margin: 10px 0;
+    border-radius: 10px;
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    transition: box-shadow 0.3s ease-in-out;
 }
 
-.row1 > div {
-    flex: 1;
-    text-align: center;
-    margin: 0 75px; /* Adjust the margin value as needed */
+.nav-button:hover {
+    outline-style: solid;
+    outline-color: rgb(185, 182, 182);
+    outline-offset: 2px;
+    transition: outline-offset 0.3s ease;
 }
 
-.row2 > div {
-    flex: 1;
-    text-align: center;
-    margin: 0 75px; /* Adjust the margin value as needed */
+.nav-button img {
+    max-width: 60%;
+    max-height: 60%;
+    margin-bottom: 5px;
 }
 
-.column1,
-.column2,
-.column3,
-.column4,
-.column5,
-.column6 {
-    flex: 1;
-    text-align: center;
+input[type = "submit"] {
+    margin-left: 5px;
+    border-radius: 20px;
+	text-decoration: none;
+	background: white;
+	padding: 6px;
 }
 
-button{
-    background-color: aqua;
+input[type = "text"] {
+    width: 750px;
+    border-radius: 20px;
+	text-decoration: none;
+	background: white;
+	color: teal;
+	padding: 6px;
 }
-<<<<<<< HEAD
 
 input[type = "submit"]:hover {
 	color: white;
@@ -216,5 +283,3 @@ input[type = "submit"]:is(:hover, :focus) {
     justify-content: center;
     align-items: center;
 }
-=======
->>>>>>> 1bda64646348a405139bc7a143fb2e7328882591

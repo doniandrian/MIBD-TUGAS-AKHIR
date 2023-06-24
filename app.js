@@ -1,20 +1,16 @@
 //import library
 import express from "express";
 import mysql from "mysql";
-import bodyParser from "body-parser";
+import bodyPafrser from "body-parser";
 import session from "express-session";
 import path from "path";
 import crypto from "crypto";
 import multer from "multer";
 
-<<<<<<< HEAD
 import fs from "fs";
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
 
-=======
->>>>>>> 1bda64646348a405139bc7a143fb2e7328882591
-//import {cookieParser} from 'cookie-parser';
 import validator from "validator";
 
 const app = express();
@@ -26,7 +22,6 @@ app.use(
   session({
     secret: "kelompok7",
     resave: false,
-<<<<<<< HEAD
     saveUninitialized: true,
   })
 );
@@ -186,69 +181,6 @@ app.get("/logout", (req, res) => {
 
 //camil register
 
-=======
-    saveUninitialized: true
-  })); 
-
-  
-app.set('view engine', 'ejs');
-app.use(express.urlencoded({ extended: true }));
-
-//login
-
-
-//routing admin
-app.get('/admin/dashboard', (req, res) => {
-    res.render('admin/dashboard', { title: 'Dashboard', currentPage: 'dashboard' });
-}
-);
-
-app.get('/admin/cetakkartu', (req, res) => {
-    res.render('admin/cetakkartu', {title: 'CetakKartu',currentPage: 'cetakkartu' });
-}
-);
-
-
-app.get('/admin/profile', (req, res) => {
-    res.render('admin/profile', {title: 'Profile', currentPage: 'profile' });
-}
-);
-
-
-app.get('/admin/daftarpengalokasian', (req, res) => {
-    res.render('admin/daftarpengalokasian', { title: 'DaftarPengalokasian',currentPage: 'daftarpengalokasian' });
-}
-);
-app.get('/admin/verifikasi', (req, res) => {
-    res.render('admin/verifikasi', { title: 'Verifikasi',currentPage: 'verifikasi' });
-}
-);
-
-//routing camil
-app.get('/camil/home', (req, res) => {
-    res.render('camil/home', {currentPage: 'home' });
-}
-);
-app.get('/camil/lihat-tps', (req, res) => {
-    res.render('camil/lihat-tps', {currentPage: 'lihat-tps' });
-}
-);
-app.get('/camil/profile', (req, res) => {
-    res.render('camil/profile', {currentPage: 'profile' });
-}
-);
-
-
-//routing lurah
-
-
-//login
-app.get('/login', (req, res) => {
-    res.render('login', { title: 'Login', currentPage: 'login' });
-}
-);
-
->>>>>>> 1bda64646348a405139bc7a143fb2e7328882591
 //signup
 app.get("/camil/datadiri", async (req, res) => {
   res.render("camil/datadiri", { title: "Signup", currentPage: "signup" });
@@ -271,7 +203,7 @@ app.post("/camil/datadiri", async (req, res) => {
 
   console.log(data);
 
-  if (true) {
+  if (data[data.length - 1].nik.length == 16 && validator.isMobilePhone(data[data.length - 1].HP, "id-ID")) {
     const kota = `SELECT idKota FROM kota WHERE ket = ?`;
     let tempkota = await executeQuery(kota, [data[data.length - 1].kota]);
 
@@ -308,7 +240,7 @@ app.post("/camil/datadiri", async (req, res) => {
     }
   } else {
     alert("Data tidak valid");
-    res.redirect("/camil/ktp");
+    res.redirect("/camil/datadiri");
   }
 });
 
@@ -323,72 +255,6 @@ function executeQuery(query, params) {
     });
   });
 }
-<<<<<<< HEAD
-
-// let data = [];
-// app.post('/camil/datadiri', async(req, res) => {
-
-//   data.push({
-//       nik: req.body.nik,
-//       lahir: req.body.lahir,
-//       tempat : req.body.tempat,
-//       kota: req.body.kota,
-//       kecamatan: req.body.kecamatan,
-//       kelurahan: req.body.kelurahan,
-//       RW: req.body.RW,
-//       RT : req.body.RT,
-//       Alamat: req.body.Alamat,
-//       HP: req.body.HP
-
-//   })
-//   console.log(data);
-
-//   if(true){
-//     const kota = `SELECT idKota FROM kota WHERE ket = ?`;
-
-//     let tempkota;
-//      await db.query(kota, [data[data.length - 1].kota], (err, result) => {
-//       if (err) {
-//         throw err;
-//       }
-
-//       tempkota = result[0].idKota;
-//     });
-//     const kecamatan = 'SELECT idKecamatan FROM kecamatan WHERE ket = ?';
-//     let tempkecamatan = "";
-//     await db.query (kecamatan, [data[data.length - 1].kecamatan], (err,result) => {
-//       if (err) {
-//         throw err;
-//       }
-
-//       tempkecamatan = result[0].idKecamatan;
-//     });
-//     const kelurahan = 'SELECT idKelurahan FROM kelurahan WHERE ket = ?';
-//     let tempkelurahan = "";
-//     await db.query (kelurahan, [data[data.length - 1].kelurahan], (err,result) => {
-//       if (err) {
-//         throw err;
-//       }
-
-//       tempkelurahan = result[0].idKelurahan;
-//     });
-
-//     const query = 'INSERT INTO camil(idCamil, tptlahir, tgllahir, idRT, idRW, idKota, idKecamatan, idKelurahan, alamat, noHp) VALUES (?, ?, ?, ?, ?, ?, ?,?,?)';
-//     await db.query(query, [data[data.length - 1].nik, data[data.length - 1].tempat, data[data.length - 1].lahir, data[data.length - 1].RT, data[data.length - 1].RW, tempkota, tempkecamatan, tempkelurahan,data[data.length - 1].Alamat,data[data.length - 1].HP], (err, result) => {
-
-//       if (err) {
-//         throw err;
-//       }
-
-//       res.redirect('/camil/ktp');
-//     });
-//   }else{
-//     alert('Data tidak valid');
-//     res.redirect('/camil/ktp');
-//   }
-
-// }
-// );
 
 //multer
 const filestorage = multer.diskStorage({
@@ -810,7 +676,7 @@ db.query(query, (err, result) => {
 
   // Menambahkan data dari hasil query ke dalam array rows
   data.forEach((item, index) => {
-    const row = [index + 1, item.tps,item.nik, item.nama, item.email, item.hp, item.alamat, item.kota, item.kecamatan, item.kelurahan, item.rt, item.rw];
+    const row = [index + 1, item.tps,item.nik, item.nama, item.Email, item.hp, item.alamat, item.kota, item.kecamatan, item.kelurahan, item.rt, item.rw];
     rows.push(row);
   });
 
@@ -1093,42 +959,6 @@ app.get("/lurah/pilih-saksi", auth, (req, res, next) => {
     next();
   }
 });
-=======
-);
-
-
-
-app.get('/camil/ktp', (req, res) => {
-    res.render('camil/ktp', { title: 'ktp', currentPage: 'signup' });
-}
-);
-app.post('/camil/ktp', (req, res) => {
-    res.redirect('/camil/signup');
-}
-);
-    
-
-app.get('/camil/signup', (req, res) => {
-    res.render('camil/signup', { title: 'signup', currentPage: 'signup' });
-}
-);
-app.post('/camil/signup', (req, res) => {
-    const password = req.body.password;
-    const hashed_pass = crypto.createHash('sha256').update(password).digest('base64');
-    data.push({
-        nama: req.body.nama,
-        email: req.body.email,
-        password: hashed_pass,
-
-
-    })
-    console.log(data);
-    res.redirect('/login');
-   
-    
-}
-);
->>>>>>> 1bda64646348a405139bc7a143fb2e7328882591
 
 app.post("/lurah/pilih-saksi", auth, (req, res) => {
   const partai = req.body.partai;
