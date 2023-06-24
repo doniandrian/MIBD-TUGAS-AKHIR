@@ -8,11 +8,11 @@ p {
 
 #buttonTambah {
     position: relative;
-    top: -120px;
+    top: -140px;
     left: 1400px;
     background-color: #73A839;
     color: white;
-    border: 0;
+    /* border: 0; */
     padding: 10px;
     padding-left: 30px;
     padding-right: 15px;
@@ -21,7 +21,7 @@ p {
 #textTambah {
     position: relative;
     left: 1411px;
-    top: -70px;
+    top: -90px;
     z-index: 2;
     color: white;
     max-width: 10px;
@@ -51,13 +51,20 @@ td {
     background-color: #033C73;
     border-radius: 2px;
     padding: 7px;
-    border: 0;
+   
 }
 
 td button {
     background-color: white;
-    border: 0;
     padding: 0;
+}
+
+#buttonEdit{
+    max-height: 31px;
+}
+
+#buttonDelete{
+    max-height: 31px;
 }
 
 .rectangle {
@@ -76,12 +83,12 @@ td button {
 }
 
 .popup {
+    display: none;
     position: relative;
     left: -250px;
     /* top: -90px; */
-    top: -300px;
+    top: -120px;
     z-index: 99;
-
 }
 
 .container {
@@ -104,19 +111,19 @@ td button {
 
 h1 {
     position: relative;
-    top: -700px;
+    top: -100px;
     /* top:-50px; */
     /* margin: 10px 0; */
     font-weight: 500;
 }
 
-#imgCloseButton {
+/* #imgCloseButton {
     position: relative;
     left: 315px;
     top: 30px;
     width: 30px;
     padding: 0;
-}
+} */
 
 h2 {
     position: relative;
@@ -131,7 +138,7 @@ h2 {
     height: 2px;
     /* background-color: #EF4C59; */
     /* margin-bottom: 20px; */
-    z-index: 9999;
+    z-index: 1;
     border: none;
     border-top: 2px solid #EF4C59;
 }
@@ -157,7 +164,7 @@ h2 {
 #table2 {
     width: 650px;
     position: relative;
-    top: 375px;
+    top: -px;
     left: 15px;
 }
 
@@ -168,7 +175,6 @@ h2 {
     padding-right: 30px;
     background-color: #34B4B3;
     border-radius: 20px;
-    border: 0;
     position: relative;
     left: 0px;
     top: 650px;
@@ -176,14 +182,17 @@ h2 {
 }
 
 .popup2 {
+    display: none;
     position: absolute;
-    top: 900px;
+    top: 440px;
     left: 510px;
+    z-index: 99;
+    
 }
 
 #imgCloseButton {
     position: absolute;
-    left: 125px;
+    left: 100px;
     top: -275px;
     width: 30px;
     padding: 0;
@@ -197,7 +206,7 @@ h2 {
     font-size: 28px;
 }
 
-#txtNomorTPS {
+#txtidrt {
     position: absolute;
     top: 375px;
     left: -730px;
@@ -214,7 +223,7 @@ h2 {
 
 } */
 
-#noTPS {
+#idrt {
     position: absolute;
     top: -150px;
     left: -420px;
@@ -235,7 +244,7 @@ h2 {
     width: 500px;
 }
 
-#txtLokasiTPS {
+#txtKapasitasMaksimum {
     position: absolute;
     top: 650px;
     top: 450px;
@@ -252,7 +261,7 @@ h2 {
 }
 
 
-#lokasiTPS {
+#kapasitasTPS {
     position: absolute;
     top: -75px;
     left: -420px;
@@ -260,7 +269,7 @@ h2 {
     border: 0;
 }
 
-#txtKapasitasMaksimum {
+#txtKeterangan {
     position: absolute;
     top: 525px;
     left: -730px;
@@ -281,7 +290,7 @@ h2 {
     width: 500px;
 }
 
-#kapasitasTPS {
+#keteranganTPS {
     position: absolute;
     top: 10px;
     left: -420px;
@@ -305,24 +314,24 @@ h2 {
 #content {
     position: absolute;
     top: 200px;
-    left: 500px;
+    left: 550px;
 }
 
-#txtKeterangan {
+/* #txtKeterangan {
     position: absolute;
     top: 600px;
     left: -730px;
     width: 500px;
     border: 0;
-}
+} */
 
-#keteranganTPS {
+/* #keteranganTPS {
     position: absolute;
     top: 80px;
     left: -420px;
     width: 495px;
     border: 0;
-}
+} */
 
 .spacer-line6 {
     position: absolute;
@@ -336,10 +345,10 @@ h2 {
     width: 500px;
 }
 
-#buttonSimpan {
+#submitSimpan {
     position: absolute;
     top: 200px;
-    left: -200px;
+    left: -235px;
     color: white;
     background-color: #41cb2b;
     border: 0;
@@ -360,7 +369,6 @@ h2 {
 
 #buttonChart {
     background-color: white;
-    border: 0;
     padding: 0;
 }
 
@@ -379,13 +387,102 @@ h2 {
     padding-right: 30px;
     background-color: #34B4B3;
     border-radius: 20px;
-    border: 0;
     max-height: 50px;
     top: 450px;
 }
 
 .popup3{
+    display: none;
     position: absolute;
     left: 600px;
     top:450px;
+    z-index: 99;
 }
+
+#txtDaftarAlokasiTPS{
+    width: 200px;
+    border: 0;
+}
+.line{
+    position: relative;
+    top: -20px;
+    left: 310px;
+    width: 79%;
+    height: 2px;
+    /* background-color: #EF4C59; */
+    /* margin-bottom: 20px; */
+    z-index: 1;
+    border: none;
+    border-top: 1px solid gray;
+}
+
+.delete {
+    
+    width: 100px;
+    height: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background: red;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+    background: #e62222;
+   }
+   
+   .delete, .delete span {
+    transition: 200ms;
+   }
+   
+   .delete .deletetext {
+    transform: translateX(35px);
+    color: white;
+    font-weight: bold;
+   }
+   
+   .delete .icondelete {
+    position: absolute;
+    border-left: 1px solid #c41b1b;
+    transform: translateX(110px);
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   }
+   
+   .delete svg {
+    width: 10px;
+    fill: #eee;
+   }
+   
+   .delete:hover {
+    background: #ff3636;
+   }
+   
+   .delete:hover .deletetext {
+    color: transparent;
+   }
+   
+   .delete:hover .icondelete {
+    width: 100px;
+    border-left: none;
+    transform: translateX(0);
+   }
+   
+   .delete:focus {
+    outline: none;
+   }
+   
+   .delete:active .icondelete svg {
+    transform: scale(0.8);
+   }
+
+   h4{
+    position: absolute;
+    top:-100px;
+    left: -100px;
+
+   }
+
+   

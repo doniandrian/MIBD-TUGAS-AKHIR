@@ -307,3 +307,9 @@ h2 {
 .hider{
     display: none;
 }
+
+#loket{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

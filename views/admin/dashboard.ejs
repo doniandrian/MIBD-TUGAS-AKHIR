@@ -13,10 +13,7 @@
 <body>
 
     <%- include('./header.ejs') %>
-        <!-- <header>
-        <img id="logoBawaslu" src="../../public/images/logo bawaslu transparan.png">
-        <img id="gambarProfile" src="../../public/images/profile.png">
-    </header> -->
+       
         <div class="utama">
             <%- include('./navigator.ejs') %>
                 <main>
@@ -27,7 +24,7 @@
                     <div id="data1">
                         <p id="totCamil">Total Calon Pemilih</p>
                         <img id="gambarCamera" src="/images/div.icon-wrapper.png">
-                        <h1 id="empat">-</h1>
+                        <h1 id="empat"><%= result[0].total %></h1>
                     </div>
                     
                     
@@ -35,13 +32,13 @@
                     <div id="data2">
                         <p id="belumVerif">Belum Terverifikasi</p>
                         <img id="gambarTas" src="/images/icon admin 1.png">
-                        <h1 id="tiga">-</h1>
+                        <h1 id="tiga"><%= result[0].belum %></h1>
                     </div>
     
                     <div id="data3">
                         <p id="sudahVerif">Sudah Terverifikasi</p>
                         <img id="gambarBohlam" src="/images/icon admin 2.png">
-                        <h1 id="satu">-</h1>
+                        <h1 id="satu"><%= result[0].sudah %></h1>
                     </div>
                     
                 </div>
@@ -57,7 +54,7 @@
                     <div id="data1">
                         <p id="jmlTPS">Jumlah TPS</p>
                         <img id="gambarCamera2" src="/images/div.icon-wrapper.png">
-                        <h1 id="empat">-</h1>
+                        <h1 id="empat"><%= result1[0].total %></h1>
                     </div>
                     
                     
@@ -65,13 +62,13 @@
                     <div id="data2">
                         <p id="tpsPenuh">TPS Penuh</p>
                         <img id="gambarTas2" src="/images/icon admin 1.png">
-                        <h1 id="tiga">-</h1>
+                        <h1 id="tiga"><%= result1[0].penuh %></h1>
                     </div>
     
                     <div id="data3">
                         <p id="tpsSedia">TPS yang Tersedia</p>
                         <img id="gambarBohlam2" src="/images/icon admin 2.png">
-                        <h1 id="satu">-</h1>
+                        <h1 id="satu"><%= result1[0].tidak %></h1>
                     </div>
                     
                 </div>

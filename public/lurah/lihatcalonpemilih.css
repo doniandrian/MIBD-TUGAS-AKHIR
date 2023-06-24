@@ -251,7 +251,8 @@ input[type = "submit"]:is(:hover, :focus) {
 }
 
 .rectangle1 .head{
-    margin-top: 250px;
+    margin-top: 350px;
+    margin-bottom: 25px;
 }
 
 .rectangle1 .ket{
@@ -269,4 +270,16 @@ input[type = "submit"]:is(:hover, :focus) {
 .saksi{
     justify-content: end;
     
+}
+
+.hider img{
+    height: 70%;
+    width: 160%;
+    margin-top: 5px;
+}
+
+.ktp2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

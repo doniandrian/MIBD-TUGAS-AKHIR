@@ -26,10 +26,7 @@
             />
             <input type="submit" value="SEARCH" />
           </div>
-          <div class="form-row saksi">
-            <label for="saksi">Tampilkan Saksi</label>
-            <input type="checkbox" id="saksi" value="saksi" />
-          </div>
+          
         </form>
         <div class="spacer-line"></div>
         <div class="profile-details">
@@ -52,8 +49,7 @@
               <td>
                 <button
                   class="button"
-                  onclick="handleButtonClick('<%= row.idCamil %>'); showmodal()"
-                >
+                  onclick="handleButtonClick('<%= row.idCamil %>'); showmodal()">
                   Detail
                 </button>
               </td>
@@ -69,9 +65,12 @@
       <!-- modal -->
       <div class="rectangle1">
         <h2 class="head">Profil Calon Pemilih</h2>
+        <hr />
 
         <h2 class="ket" id="ket"></h2>
-        <img src="/KTP_data/test.jpg" class="ktp" />
+
+        <div class="ktp2" id="ktp"></div>
+
         <div class="profile-details" id="profile-details">
           <div>
             <p><strong>NIK:</strong></p>
@@ -99,16 +98,17 @@
     </div>
 
     <script>
-      let selectedIdCamil = "";
+      
 
       function showmodal() {
         // Mengambil data profil dari server berdasarkan selectedIdCamil
         fetchProfileData(selectedIdCamil)
           .then((profileData) => {
             // Mengisi detail profil di dalam modal
-            const profileDetailsElement = document.getElementById(
-              "profile-details"
-            );
+            const profileDetailsElement =
+              document.getElementById("profile-details");
+
+            const profilektp = document.getElementById("ktp");
             const profileNameElement = document.getElementById("ket");
             profileNameElement.innerHTML = profileData.nama;
             profileDetailsElement.innerHTML = `
@@ -123,8 +123,16 @@
                 <p><strong>RT/RW:</strong> ${profileData.idRT}/${profileData.idRW}</p>
               </div>
             `;
-
-
+            var img = new Image();
+            img.onload = function () {
+              // Jika file JPG tersedia
+              profilektp.innerHTML = `<img src="/KTP_data/${profileData.idCamil}.jpg" class="ktp" />`;
+            };
+            img.onerror = function () {
+              // Jika file JPG tidak tersedia
+              profilektp.innerHTML = `<img src="/KTP_data/ktp.png" class="ktp" />`;
+            };
+            img.src = `/KTP_data/${profileData.idCamil}.jpg`;
           })
           .catch((error) => {
             console.error("Error:", error);
@@ -140,6 +148,7 @@
 
       function handleButtonClick(idCamil) {
         selectedIdCamil = idCamil;
+        console.log(selectedIdCamil);
       }
 
       function fetchProfileData(idCamil) {
